@@ -9,6 +9,7 @@ import { Leaderboard } from './pages/Leaderboard'
 import { Profile } from './pages/Profile'
 import { Rules } from './pages/Rules'
 import { Admin } from './pages/Admin'
+import { CursorLiquidMask } from './components/CursorLiquidMask'
 
 function Header() {
   const { publicKey } = useWallet()
@@ -100,6 +101,9 @@ export default function App() {
         Entry = send exact fee from your wallet to the treasury. Your sending address = your league profile. 
         Pot = live verifiable treasury balance. Payouts executed manually by the organizer.
       </footer>
+
+      {/* Liquid cursor mask effect - premium spotlight that follows the mouse and "activates" the glass (like https://cursor-mask-effect.webflow.io/) */}
+      <CursorLiquidMask />
     </div>
   )
 }

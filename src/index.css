@@ -246,3 +246,36 @@ body {
   height: 42px !important;
   font-size: 13px !important;
 }
+
+/* Cursor Mask / Liquid Spotlight Effect (inspired by https://cursor-mask-effect.webflow.io/) */
+.cursor-mask {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.65);
+  -webkit-mask-image: radial-gradient(
+    circle 520px at var(--cursor-x, 50%) var(--cursor-y, 50%),
+    transparent 22%,
+    black 70%
+  );
+  mask-image: radial-gradient(
+    circle 520px at var(--cursor-x, 50%) var(--cursor-y, 50%),
+    transparent 22%,
+    black 70%
+  );
+  transition: mask-image 0.08s linear, -webkit-mask-image 0.08s linear;
+}
+
+/* Add a soft liquid glow inside the mask for extra premium "wet glass" feel */
+.cursor-mask::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle 380px at var(--cursor-x, 50%) var(--cursor-y, 50%),
+    rgba(167, 139, 250, 0.12) 0%,
+    transparent 65%
+  );
+  pointer-events: none;
+}

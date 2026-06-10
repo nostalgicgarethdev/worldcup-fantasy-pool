@@ -62,39 +62,39 @@ export function Home() {
         <PotDisplay />
       </div>
 
-      {/* How it works — clean, premium steps */}
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-10">
-          <div className="section-title">How the league works</div>
-          <p className="text-[var(--subtle)] mt-2">Simple. Transparent. On-chain verifiable.</p>
+      {/* How it works — compact premium steps (side-by-side on desktop to avoid looking too long) */}
+      <div className="max-w-5xl mx-auto">
+        <div className="text-center mb-6">
+          <div className="section-title text-xl">How the league works</div>
+          <p className="text-[var(--subtle)] text-sm mt-1">Simple. Transparent. On-chain verifiable.</p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {[
             {
               num: "01",
               title: "Send to Treasury",
-              desc: "One-time entry fee sent from your wallet to the official treasury. Your sending address = your permanent league profile."
+              desc: "Send the one-time entry fee from your wallet to the treasury. Your address = your profile."
             },
             {
               num: "02", 
               title: "Predict Outcomes",
-              desc: "For every match, pick Home, Draw, or Away. 3 points for every correct pick. Picks lock at kickoff."
+              desc: "Pick Home, Draw or Away for each match. 3 points per correct pick. Locks at kickoff."
             },
             {
               num: "03",
               title: "Win the Pot",
-              desc: "Highest total points after the final (or at phase closes) wins. All payouts are manual from the visible treasury you can verify on Solscan."
+              desc: "Most points after the final wins. Payouts from the visible treasury (verify on Solscan)."
             }
           ].map((step, i) => (
             <motion.div 
               key={i}
-              whileHover={{ y: -3 }}
-              className="glass group p-7 md:p-8"
+              whileHover={{ y: -2 }}
+              className="glass group p-4 md:p-5 text-sm"
             >
-              <div className="font-mono text-xs tracking-[3.5px] text-[var(--accent-2)]/90 mb-4">{step.num}</div>
-              <div className="text-[var(--text-h)] text-[22px] font-semibold tracking-[-0.6px] mb-3.5 group-hover:text-[var(--accent-2)] transition-colors">{step.title}</div>
-              <p className="text-[15px] leading-relaxed text-[var(--text)]/90">{step.desc}</p>
+              <div className="font-mono text-[10px] tracking-[3px] text-[var(--accent-2)]/90 mb-1.5">{step.num}</div>
+              <div className="text-[var(--text-h)] text-base font-semibold tracking-[-0.3px] mb-1.5 group-hover:text-[var(--accent-2)] transition-colors">{step.title}</div>
+              <p className="text-[13px] leading-snug text-[var(--text)]/90">{step.desc}</p>
             </motion.div>
           ))}
         </div>
