@@ -2,7 +2,7 @@
 
 **GitHub:** https://github.com/nostalgicgarethdev/worldcup-fantasy-pool
 
-**Live site:** Deploy via Vercel (see below) — now with a premium, new-age professional design.
+**Live site:** Deploy via Vercel (see below) — now featuring a premium **liquid glass** new-age design (heavy backdrop blur, frosted semi-transparent panels, layered depth, refined motion, and high-end typography).
 
 Real $TOKEN (pump.fun) prediction pool. Users send a fixed entry fee from their wallet to your treasury. The sending address becomes their league profile. 1X2 picks on matches. 3 pts per correct outcome. Staged phase winners + final overall winner take (portions of) the visible pot.
 
@@ -69,14 +69,16 @@ Everything is transparent — anyone can look at the treasury on Solscan.
 
 The site is designed to be deployed as a static frontend (Vercel is perfect and what your other projects use).
 
-**Fastest professional deploy:**
+**Fastest professional deploy (recommended):**
 
 1. Go to https://vercel.com/new
 2. Import the GitHub repo: `nostalgicgarethdev/worldcup-fantasy-pool`
-3. Vercel will auto-detect Vite + use the `vercel.json` we added for React Router.
-4. Deploy.
+3. Vercel auto-detects the Vite project and uses the included `vercel.json` (for client-side routing).
+4. Hit Deploy.
 
-Every push to main will auto-deploy.
+The liquid glass UI will be live instantly. Every push auto-deploys.
+
+(Alternative local: after `vercel login`, run `npm run build && npx vercel --prod`)
 
 You can also run locally with `npm run build && npx vercel --prod` after running `vercel login`.
 

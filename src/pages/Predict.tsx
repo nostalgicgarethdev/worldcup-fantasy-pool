@@ -86,7 +86,7 @@ export function Predict() {
         const groupMatches = matches.filter(m => m.group === group)
         return (
           <div key={group} className="space-y-3">
-            <div className="text-xs uppercase tracking-widest text-[var(--subtle)] pl-1">Group {group}</div>
+            <div className="text-[10px] uppercase tracking-[2.5px] text-[var(--subtle)]/70 pl-1.5 mb-1">GROUP {group}</div>
             {groupMatches.map((m: Match) => {
               const current = picks[m.id]
               const locked = false // real lock time logic later

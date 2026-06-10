@@ -76,9 +76,9 @@ export function SendEntryButton({ onSuccess }: { onSuccess?: (sig: string) => vo
     <button
       onClick={handleSend}
       disabled={disabled}
-      className="btn-primary w-full md:w-auto px-8 py-3 disabled:opacity-60"
+      className="btn-primary w-full md:w-auto px-8 py-3.5 text-base disabled:opacity-60 disabled:grayscale"
     >
-      {loading ? 'Sending...' : `Send ${config.entryFee.toLocaleString()} ${config.tokenSymbol} & Join`}
+      {loading ? 'Sending to treasury...' : `Send ${config.entryFee.toLocaleString()} ${config.tokenSymbol} & Join`}
     </button>
   )
 }
