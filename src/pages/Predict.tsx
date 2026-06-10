@@ -46,7 +46,7 @@ export function Predict() {
   }
 
   // Group by group for nice tabs (only groups that have matches in our seed)
-  const groupsWithMatches = Array.from(new Set(matches.filter(m => m.group).map(m => m.group!)))
+  const groupsWithMatches = Array.from(new Set(matches.filter((m: Match) => m.group).map((m: Match) => m.group!)))
 
   return (
     <div className="space-y-6">
@@ -82,8 +82,8 @@ export function Predict() {
         </div>
       )}
 
-      {groupsWithMatches.map(group => {
-        const groupMatches = matches.filter(m => m.group === group)
+      {groupsWithMatches.map((group: string) => {
+        const groupMatches = matches.filter((m: Match) => m.group === group)
         return (
           <div key={group} className="space-y-3">
             <div className="text-[10px] uppercase tracking-[2.5px] text-[var(--subtle)]/70 pl-1.5 mb-1">GROUP {group}</div>
