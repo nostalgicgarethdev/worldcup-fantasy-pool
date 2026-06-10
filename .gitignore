@@ -26,6 +26,8 @@ dist-ssr
 # App-specific for WC Fantasy Pool
 *.db
 data/
+!src/data/
+!src/data/**
 .env
 .env.*
 .env.local
