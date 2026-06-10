@@ -8,4 +8,14 @@ export default defineConfig({
   server: {
     port: 5173,
   },
+  build: {
+    chunkSizeWarningLimit: 1000,
+    rollupOptions: {
+      onwarn(warning, warn) {
+        // Suppress non-critical warnings from wallet adapter dependencies (ox, walletconnect, etc.)
+        if (warning.code === 'INVALID_ANNOTATION') return
+        warn(warning)
+      },
+    },
+  },
 })
