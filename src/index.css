@@ -247,6 +247,29 @@ body {
   font-size: 13px !important;
 }
 
+/* Horizontal scroll snap helpers for premium Webflow-like feel */
+.snap-x {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.snap-center {
+  scroll-snap-align: center;
+}
+
+.snap-start {
+  scroll-snap-align: start;
+}
+
+/* Hide scrollbar but keep functionality */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}
+
 /* Cursor Mask / Liquid Spotlight Effect (inspired by https://cursor-mask-effect.webflow.io/) */
 .cursor-mask {
   position: fixed;

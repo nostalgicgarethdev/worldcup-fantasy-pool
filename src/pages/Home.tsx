@@ -62,14 +62,17 @@ export function Home() {
         <PotDisplay />
       </div>
 
-      {/* How it works — compact premium steps (side-by-side on desktop to avoid looking too long) */}
+      {/* How it works — horizontal scroll snap (inspired by https://webflow-scroll-snap.webflow.io/)
+          Keeps the section short vertically while feeling premium and interactive.
+          Cards snap nicely, great on mobile and desktop. */}
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-6">
           <div className="section-title text-xl">How the league works</div>
           <p className="text-[var(--subtle)] text-sm mt-1">Simple. Transparent. On-chain verifiable.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        {/* Horizontal snap scroller - the magic for not looking "too long" */}
+        <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-6 -mx-2 px-2 md:mx-0 md:px-0">
           {[
             {
               num: "01",
@@ -90,13 +93,17 @@ export function Home() {
             <motion.div 
               key={i}
               whileHover={{ y: -2 }}
-              className="glass group p-4 md:p-5 text-sm"
+              className="glass group p-5 md:p-6 text-sm flex-shrink-0 w-[82%] sm:w-[320px] snap-center"
             >
               <div className="font-mono text-[10px] tracking-[3px] text-[var(--accent-2)]/90 mb-1.5">{step.num}</div>
-              <div className="text-[var(--text-h)] text-base font-semibold tracking-[-0.3px] mb-1.5 group-hover:text-[var(--accent-2)] transition-colors">{step.title}</div>
+              <div className="text-[var(--text-h)] text-lg font-semibold tracking-[-0.3px] mb-2 group-hover:text-[var(--accent-2)] transition-colors">{step.title}</div>
               <p className="text-[13px] leading-snug text-[var(--text)]/90">{step.desc}</p>
             </motion.div>
           ))}
+        </div>
+
+        <div className="text-center text-[10px] text-[var(--subtle)]/70 -mt-2 mb-4 md:hidden">
+          ← Swipe to explore →
         </div>
       </div>
 
