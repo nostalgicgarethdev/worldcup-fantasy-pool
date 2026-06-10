@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Dark professional theme matching user's forge-agents + DePINZcash style */
+:root {
+  --bg: #09090b;
+  --surface: #111113;
+  --border: #27272a;
+  --text: #a1a1aa;
+  --text-h: #fafafa;
+  --subtle: #71717a;
+  --accent: #a855f7;
+  --accent-strong: #c084fc;
+  --accent-text: #3b0764;
+  --success: #22c55e;
+  --warn: #f59e0b;
+
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Reusable components (inspired by DePIN + forge) */
+.card {
+  @apply rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5;
+}
+
+.btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-2.5 text-sm font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.btn-primary {
+  @apply btn bg-[var(--accent-strong)] text-[var(--accent-text)] hover:bg-white;
+}
+
+.btn-outline {
+  @apply btn border border-[var(--border)] hover:bg-[var(--surface)] hover:text-[var(--text-h)];
+}
+
+.input {
+  @apply w-full rounded-xl border border-[var(--border)] bg-[#09090b] px-4 py-2.5 text-sm text-[var(--text-h)] placeholder:text-[var(--subtle)] focus:border-[var(--accent)] focus:outline-none;
+}
+
+.pill {
+  @apply inline-flex items-center rounded-full border border-[var(--border)] bg-[var(--surface)] px-2.5 py-0.5 text-[10px] uppercase tracking-[1px] text-[var(--subtle)];
+}
+
+.stat {
+  @apply text-3xl font-semibold text-[var(--text-h)] tabular-nums;
+}
+
+.stat-label {
+  @apply text-[10px] uppercase tracking-[1.5px] text-[var(--subtle)];
+}
+
+.wallet-btn {
+  /* wallet-adapter overrides for dark + purple accent */
+}
+
+a {
+  color: inherit;
+}
+
+a:hover {
+  color: var(--text-h);
+}
+
+code, .mono {
+  font-family: var(--mono);
+}
