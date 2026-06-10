@@ -1,5 +1,9 @@
 # WC Fantasy Pool — FIFA World Cup 2026 (Token Entry)
 
+**GitHub:** https://github.com/nostalgicgarethdev/worldcup-fantasy-pool
+
+Real $TOKEN (pump.fun) prediction pool. Users send a fixed entry fee from their wallet to your treasury. The sending address becomes their league profile. 1X2 picks on matches. 3 pts per correct outcome. Staged phase winners + final overall winner take (portions of) the visible pot.
+
 Real $TOKEN (pump.fun) prediction pool. Users send a fixed entry fee from their wallet to your treasury. The sending address becomes their league profile. 1X2 picks on matches. 3 pts per correct outcome. Staged phase winners + final overall winner take (portions of) the visible pot.
 
 ## Quick Start (Local)

@@ -7,7 +7,7 @@ export const config = {
   // Treasury wallet that receives all entry fees.
   // The live $TOKEN balance here = the pot (fully transparent on-chain).
   // You control distributions to winners.
-  treasuryWallet: 'YOUR_TREASURY_WALLET_HERE',
+  treasuryWallet: '3i5oTdPCydCEGJSkHLsFm1hck4nxdhiCuGDmyr47HNHT',
 
   // Entry fee in whole tokens (adjust to what you want people to send).
   // Example: 100000 means 100,000 of your token (the app handles decimals).

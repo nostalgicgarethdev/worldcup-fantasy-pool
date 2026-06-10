@@ -2,79 +2,121 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Dark professional theme matching user's forge-agents + DePINZcash style */
+/* Professional new-age dark theme - compatible */
 :root {
-  --bg: #09090b;
-  --surface: #111113;
-  --border: #27272a;
+  --bg: #050507;
+  --surface: #111115;
+  --surface-2: #18181f;
+  --border: #25252e;
   --text: #a1a1aa;
-  --text-h: #fafafa;
+  --text-h: #f4f4f5;
   --subtle: #71717a;
-  --accent: #a855f7;
-  --accent-strong: #c084fc;
-  --accent-text: #3b0764;
+  --accent: #7c3aed;
+  --accent-2: #a855f7;
   --success: #22c55e;
   --warn: #f59e0b;
-
   --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
-#root {
-  min-height: 100vh;
-}
+#root { min-height: 100vh; }
 
-/* Reusable components (inspired by DePIN + forge) */
+/* Clean professional components */
 .card {
-  @apply rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  padding: 24px;
+  box-shadow: 0 10px 30px -15px rgb(0 0 0 / 0.25);
 }
 
 .btn {
-  @apply inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-2.5 text-sm font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 9999px;
+  padding: 12px 28px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.15s ease;
 }
 
 .btn-primary {
-  @apply btn bg-[var(--accent-strong)] text-[var(--accent-text)] hover:bg-white;
+  background: linear-gradient(to right, var(--accent), var(--accent-2));
+  color: white;
+  box-shadow: 0 4px 15px -2px rgb(124 58 237 / 0.35);
 }
 
 .btn-outline {
-  @apply btn border border-[var(--border)] hover:bg-[var(--surface)] hover:text-[var(--text-h)];
-}
-
-.input {
-  @apply w-full rounded-xl border border-[var(--border)] bg-[#09090b] px-4 py-2.5 text-sm text-[var(--text-h)] placeholder:text-[var(--subtle)] focus:border-[var(--accent)] focus:outline-none;
-}
-
-.pill {
-  @apply inline-flex items-center rounded-full border border-[var(--border)] bg-[var(--surface)] px-2.5 py-0.5 text-[10px] uppercase tracking-[1px] text-[var(--subtle)];
-}
-
-.stat {
-  @apply text-3xl font-semibold text-[var(--text-h)] tabular-nums;
-}
-
-.stat-label {
-  @apply text-[10px] uppercase tracking-[1.5px] text-[var(--subtle)];
-}
-
-.wallet-btn {
-  /* wallet-adapter overrides for dark + purple accent */
-}
-
-a {
-  color: inherit;
-}
-
-a:hover {
+  border: 1px solid var(--border);
   color: var(--text-h);
 }
 
-code, .mono {
-  font-family: var(--mono);
+.btn-outline:hover {
+  background: var(--surface-2);
+  border-color: #363640;
+}
+
+.stat {
+  font-size: 64px;
+  font-weight: 700;
+  letter-spacing: -3.5px;
+  color: var(--text-h);
+  line-height: 1;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 2px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--subtle);
+}
+
+.match-card {
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  padding: 20px;
+  transition: all 0.2s ease;
+}
+
+.pick-btn {
+  flex: 1;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  padding: 10px 0;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.1s;
+}
+
+.pick-btn.active {
+  border-color: var(--accent-2);
+  background: rgba(124, 58, 237, 0.1);
+  color: var(--text-h);
+}
+
+/* Wallet button */
+.wallet-adapter-button-trigger {
+  background: linear-gradient(to right, var(--accent), var(--accent-2)) !important;
+  color: white !important;
+  border-radius: 9999px !important;
+  font-weight: 600 !important;
+  padding: 0 22px !important;
+  height: 42px !important;
+  font-size: 13px !important;
 }

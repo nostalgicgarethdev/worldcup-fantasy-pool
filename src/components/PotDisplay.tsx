@@ -1,10 +1,11 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Connection, PublicKey } from '@solana/web3.js'
-import { config, entryFeeRaw } from '../lib/config'
+import { config } from '../lib/config'
 import { formatTokenAmount, shortAddress } from '../lib/format'
+import { motion } from 'framer-motion'
 
 export function PotDisplay({ compact = false }: { compact?: boolean }) {
-  const [sol, setSol] = useState<number | null>(null)
+  const [, setSol] = useState<number | null>(null)
   const [tokenBal, setTokenBal] = useState<number | null>(null)
   const [loading, setLoading] = useState(true)
 
@@ -18,7 +19,7 @@ export function PotDisplay({ compact = false }: { compact?: boolean }) {
     setLoading(true)
 
     async function load() {
-      if (!config.treasuryWallet || config.treasuryWallet.includes('YOUR_')) {
+      if (!config.treasuryWallet) {
         if (!cancelled) {
           setSol(null)
           setTokenBal(null)
@@ -41,6 +42,9 @@ export function PotDisplay({ compact = false }: { compact?: boolean }) {
             total += info.parsed?.info?.tokenAmount?.uiAmount ?? 0
           }
           if (!cancelled) setTokenBal(total)
+        } else {
+          // Still show something if mint not configured yet
+          if (!cancelled) setTokenBal(null)
         }
       } catch (e) {
         console.error('Failed to load treasury balance', e)
@@ -54,7 +58,7 @@ export function PotDisplay({ compact = false }: { compact?: boolean }) {
     }
 
     load()
-    const id = setInterval(load, 30000) // refresh every 30s
+    const id = setInterval(load, 25000)
     return () => {
       cancelled = true
       clearInterval(id)
@@ -62,47 +66,79 @@ export function PotDisplay({ compact = false }: { compact?: boolean }) {
   }, [connection])
 
   const treasury = config.treasuryWallet
-  const isPlaceholder = !treasury || treasury.includes('YOUR_')
+  const hasMint = config.tokenMint && !config.tokenMint.includes('YOUR_')
+  const isConfigured = treasury && !treasury.includes('YOUR_')
+
+  const displayAmount = tokenBal != null 
+    ? formatTokenAmount(BigInt(Math.floor(tokenBal * 1e6)), config.tokenDecimals) 
+    : '—'
 
   if (compact) {
     return (
-      <div className="rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-1 text-xs flex items-center gap-2">
-        <span className="text-[var(--subtle)]">Pot</span>
-        <span className="font-mono text-[var(--text-h)]">
-          {loading ? '...' : isPlaceholder ? '—' : `${formatTokenAmount(BigInt(Math.floor((tokenBal ?? 0) * 1e6)), config.tokenDecimals)} ${config.tokenSymbol}`}
+      <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface-2)] px-4 py-1.5 text-xs flex items-center gap-2 font-medium">
+        <span className="text-[var(--subtle)]">POT</span>
+        <span className="font-mono text-[var(--text-h)] tabular-nums">
+          {loading ? '...' : displayAmount} {config.tokenSymbol}
         </span>
       </div>
     )
   }
 
   return (
-    <div className="card">
-      <div className="flex items-baseline justify-between gap-3">
+    <motion.div 
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="relative overflow-hidden rounded-3xl border border-[var(--border)] bg-[var(--surface)] p-8 md:p-12"
+    >
+      <div className="flex items-start justify-between gap-6">
         <div>
-          <div className="stat-label">Current Pot (live on-chain)</div>
-          <div className="stat mt-1">
-            {loading ? '...' : isPlaceholder ? 'Configure treasury' : `${tokenBal != null ? formatTokenAmount(BigInt(Math.floor(tokenBal * 1e6)), config.tokenDecimals) : '0'} ${config.tokenSymbol}`}
+          <div className="flex items-center gap-3 mb-2">
+            <div className="pill">
+              <span className="live-dot inline-block w-1.5 h-1.5 rounded-full bg-[var(--success)]" /> LIVE
+            </div>
+            <div className="text-xs uppercase tracking-[2px] text-[var(--subtle)] font-medium">TREASURY BALANCE</div>
           </div>
-          <div className="text-[10px] text-[var(--subtle)] mt-0.5">Treasury $TOKEN balance • updates every 30s</div>
+
+          <div className="flex items-baseline gap-3">
+            <div className="text-[72px] md:text-[86px] font-semibold tracking-[-4.5px] leading-none text-[var(--text-h)] tabular-nums">
+              {loading ? '…' : displayAmount}
+            </div>
+            <div className="text-3xl font-medium text-[var(--text)] pb-2">{config.tokenSymbol}</div>
+          </div>
+
+          <div className="text-sm text-[var(--subtle)] mt-1">
+            Real-time on-chain • Refreshes every ~25s
+          </div>
         </div>
-        <a
-          href={treasury && !isPlaceholder ? `https://solscan.io/account/${treasury}` : '#'}
-          target="_blank"
-          rel="noreferrer"
-          className="text-xs text-[var(--accent)] hover:underline"
-        >
-          View on Solscan ↗
-        </a>
+
+        {isConfigured && (
+          <a 
+            href={`https://solscan.io/account/${treasury}`}
+            target="_blank"
+            rel="noreferrer"
+            className="btn-ghost text-xs mt-1 hidden md:flex"
+          >
+            VIEW ON SOLSCAN →
+          </a>
+        )}
       </div>
 
-      {!isPlaceholder && (
-        <div className="mt-3 text-[10px] font-mono break-all text-[var(--subtle)] border-t border-[var(--border)] pt-2">
-          {treasury}
+      {isConfigured && (
+        <div className="mt-8 pt-6 border-t border-[var(--border)] flex items-center justify-between text-xs">
+          <div className="font-mono text-[var(--subtle)] break-all">
+            {shortAddress(treasury, 6, 6)}
+          </div>
+          {!hasMint && (
+            <div className="text-[var(--warn)] text-[10px]">Add your token mint in config.ts to show exact $TOKEN balance</div>
+          )}
         </div>
       )}
-      {isPlaceholder && (
-        <div className="mt-2 text-xs text-[var(--warn)]">Replace TREASURY_WALLET in src/lib/config.ts with your real address.</div>
+
+      {!isConfigured && (
+        <div className="mt-4 text-sm text-[var(--warn)]">
+          Treasury address configured. Add your pump.fun token mint for full balance display and transfers.
+        </div>
       )}
-    </div>
+    </motion.div>
   )
 }

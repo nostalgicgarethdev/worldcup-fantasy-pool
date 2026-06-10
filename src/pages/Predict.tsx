@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useWallet } from '@solana/wallet-adapter-react'
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui'
-import { matches, Match } from '../data/matches'
+import { matches, type Match } from '../data/matches'
 import { SendEntryButton } from '../components/SendEntryButton'
 import { config } from '../lib/config'
 
