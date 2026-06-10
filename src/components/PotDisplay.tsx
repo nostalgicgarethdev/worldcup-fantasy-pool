@@ -89,10 +89,7 @@ export function PotDisplay({ compact = false }: { compact?: boolean }) {
       initial={{ opacity: 0, y: 20, scale: 0.98 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
-      className="glass relative overflow-hidden p-10 md:p-14 rounded-3xl border border-white/10"
-      style={{
-        background: 'linear-gradient(145deg, rgba(17,17,21,0.65) 0%, rgba(11,11,15,0.75) 100%)',
-      }}
+      className="glass relative overflow-hidden p-10 md:p-14 rounded-3xl"
     >
       <div className="flex items-start justify-between gap-6">
         <div>

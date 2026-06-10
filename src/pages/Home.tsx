@@ -53,8 +53,8 @@ export function Home() {
         </div>
       </div>
 
-      {/* Live Pot — ultra liquid glass centerpiece */}
-      <div className="max-w-[820px] mx-auto px-2">
+      {/* Live Pot — Heavy Frost style (matching the reference "Heavy Frost" preset) */}
+      <div className="max-w-[760px] mx-auto px-2">
         <div className="text-center mb-5">
           <div className="inline-flex items-center gap-2 text-[10px] tracking-[3px] text-[var(--subtle)]/70 font-medium mb-1">LIVE • VERIFIABLE ON SOLANA</div>
           <div className="text-2xl tracking-[-1px] text-[var(--text-h)]">The Pot</div>
@@ -63,7 +63,7 @@ export function Home() {
       </div>
 
       {/* How it works — clean, premium steps */}
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         <div className="text-center mb-10">
           <div className="section-title">How the league works</div>
           <p className="text-[var(--subtle)] mt-2">Simple. Transparent. On-chain verifiable.</p>

@@ -15,7 +15,7 @@ function Header() {
   const isAdmin = false // will be wired to treasury/organizer wallet check later
 
   return (
-    <header className="sticky top-0 z-50 glass border-b border-white/10 backdrop-blur-3xl">
+    <header className="sticky top-0 z-50 glass border-b border-white/10 backdrop-blur-3xl bg-white/5">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <div className="flex items-center gap-4">
           <NavLink to="/" className="flex items-center gap-3 font-semibold text-[var(--text-h)] tracking-[-0.5px] text-xl">
@@ -69,10 +69,11 @@ function navClass(isActive: boolean) {
 
 export default function App() {
   return (
-    <div className="flex min-h-screen flex-col bg-[#050507] text-[var(--text)]">
+    <div className="flex min-h-screen flex-col bg-[#0a0a0f] text-[var(--text)]">
       <Header />
 
-      <main className="mx-auto w-full max-w-6xl flex-1 px-5 py-10">
+      {/* Main content "canvas" with rich background so the liquid glass panels can shine (inspired by the reference) */}
+      <main className="mx-auto w-full max-w-5xl flex-1 px-6 md:px-8 py-10">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/predict" element={<Predict />} />
