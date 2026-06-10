@@ -69,7 +69,17 @@ function navClass(isActive: boolean) {
 
 export default function App() {
   return (
-    <div className="flex min-h-screen flex-col bg-[#0a0a0f] text-[var(--text)]">
+    <div className="flex min-h-screen flex-col text-[var(--text)] relative">
+      {/* Real background image layer - fixed so liquid glass blurs over it nicely */}
+      <div 
+        className="fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `
+            linear-gradient(145deg, rgba(5,5,15,0.42) 0%, rgba(10,6,25,0.38) 45%, rgba(8,5,20,0.48) 100%),
+            url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=2000&q=80')
+          `
+        }}
+      />
       <Header />
 
       {/* Main content "canvas" with rich background so the liquid glass panels can shine (inspired by the reference) */}
