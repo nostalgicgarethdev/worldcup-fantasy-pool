@@ -75,9 +75,9 @@ export function PotDisplay({ compact = false }: { compact?: boolean }) {
 
   if (compact) {
     return (
-      <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface-2)] px-4 py-1.5 text-xs flex items-center gap-2 font-medium">
-        <span className="text-[var(--subtle)]">POT</span>
-        <span className="font-mono text-[var(--text-h)] tabular-nums">
+      <div className="glass rounded-2xl border border-white/10 px-3.5 py-1 text-[10px] flex items-center gap-2 font-medium tracking-widest">
+        <span className="text-[var(--subtle)]/80">POT</span>
+        <span className="font-mono text-[var(--text-h)] tabular-nums text-xs">
           {loading ? '...' : displayAmount} {config.tokenSymbol}
         </span>
       </div>
@@ -86,9 +86,13 @@ export function PotDisplay({ compact = false }: { compact?: boolean }) {
 
   return (
     <motion.div 
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="relative overflow-hidden rounded-3xl border border-[var(--border)] bg-[var(--surface)] p-8 md:p-12"
+      initial={{ opacity: 0, y: 20, scale: 0.98 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
+      className="glass relative overflow-hidden p-10 md:p-14 rounded-3xl border border-white/10"
+      style={{
+        background: 'linear-gradient(145deg, rgba(17,17,21,0.65) 0%, rgba(11,11,15,0.75) 100%)',
+      }}
     >
       <div className="flex items-start justify-between gap-6">
         <div>
@@ -123,20 +127,24 @@ export function PotDisplay({ compact = false }: { compact?: boolean }) {
         )}
       </div>
 
+      {/* Liquid glass depth layers */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.06),transparent_50%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(168,85,247,0.04),transparent_60%)] pointer-events-none" />
+
       {isConfigured && (
-        <div className="mt-8 pt-6 border-t border-[var(--border)] flex items-center justify-between text-xs">
-          <div className="font-mono text-[var(--subtle)] break-all">
+        <div className="relative z-10 mt-8 pt-6 border-t border-white/10 flex items-center justify-between text-xs">
+          <div className="font-mono text-[var(--subtle)]/80 break-all tracking-wider">
             {shortAddress(treasury, 6, 6)}
           </div>
           {!hasMint && (
-            <div className="text-[var(--warn)] text-[10px]">Add your token mint in config.ts to show exact $TOKEN balance</div>
+            <div className="text-[var(--warn)]/90 text-[10px] px-2 py-px rounded bg-white/5">Set mint in config for token balance</div>
           )}
         </div>
       )}
 
       {!isConfigured && (
-        <div className="mt-4 text-sm text-[var(--warn)]">
-          Treasury address configured. Add your pump.fun token mint for full balance display and transfers.
+        <div className="relative z-10 mt-4 text-sm text-[var(--warn)]/90">
+          Treasury set. Provide your pump.fun token mint for full $TOKEN display + transfers.
         </div>
       )}
     </motion.div>

@@ -7,26 +7,26 @@ export function Admin() {
 
   if (!isTreasury) {
     return (
-      <div className="card max-w-md">
-        Admin is only available when connected as the treasury/organizer wallet ({config.treasuryWallet ? config.treasuryWallet.slice(0, 8) + '...' : 'not configured'}).
+      <div className="glass max-w-md p-7 text-sm">
+        Admin panel is restricted to the treasury wallet ({config.treasuryWallet ? config.treasuryWallet.slice(0,8)+'...' : 'configure in config.ts'}).
       </div>
     )
   }
 
   return (
     <div>
-      <h1 className="text-3xl font-semibold tracking-tight text-[var(--text-h)] mb-4">Admin</h1>
-      <div className="grid gap-4 md:grid-cols-2">
-        <div className="card">
-          <div className="font-medium mb-2">Match Results</div>
-          <div className="text-sm text-[var(--subtle)]">Enter scores or winners for matches here (will power the live leaderboard and scoring). Full UI coming in the next passes.</div>
+      <h1 className="text-4xl font-semibold tracking-[-1.5px] text-[var(--text-h)] mb-6">Admin</h1>
+      <div className="grid gap-5 md:grid-cols-2">
+        <div className="glass p-7">
+          <div className="font-medium mb-3 tracking-tight">Match Results</div>
+          <div className="text-sm text-[var(--subtle)]">Enter results here to drive the live leaderboard. Full interface coming in the next update.</div>
         </div>
-        <div className="card">
-          <div className="font-medium mb-2">Entrants & Payouts</div>
-          <div className="text-sm text-[var(--subtle)]">List of wallets that sent the fee + rescan button for manual sends. Generate payout list (top by phase / overall) with copyable addresses.</div>
+        <div className="glass p-7">
+          <div className="font-medium mb-3 tracking-tight">Entrants &amp; Payouts</div>
+          <div className="text-sm text-[var(--subtle)]">View verified depositors, rescan for manual sends, and generate payout lists for the current phase or overall winner.</div>
         </div>
       </div>
-      <div className="text-xs mt-4 text-[var(--subtle)]">This panel (and the full result entry + payout tools) will be fully functional once the matches data, DB, and scoring are wired.</div>
+      <div className="text-xs mt-4 text-[var(--subtle)]/70">Full tools (result entry, rescan treasury, payout CSV) will be wired once backend + scoring are complete.</div>
     </div>
   )
 }

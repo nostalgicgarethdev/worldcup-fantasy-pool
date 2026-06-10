@@ -8,18 +8,18 @@ export function Profile() {
 
   return (
     <div>
-      <h1 className="text-3xl font-semibold tracking-tight text-[var(--text-h)] mb-2">Profile</h1>
+      <h1 className="text-4xl font-semibold tracking-[-1.5px] text-[var(--text-h)] mb-2">Profile</h1>
 
-      {!target && <div className="card max-w-md">Connect a wallet or visit a profile URL to see picks and entry status.</div>}
+      {!target && <div className="glass max-w-md p-7">Connect a wallet or paste a profile address to view picks and entry status.</div>}
 
       {target && (
-        <div className="space-y-4">
-          <div className="card">
-            <div className="font-mono text-sm break-all text-[var(--text-h)]">{target}</div>
-            <div className="text-xs text-[var(--subtle)] mt-1">This wallet's sending address is their league identity (after they send the entry fee to the treasury).</div>
+        <div className="space-y-5 max-w-2xl">
+          <div className="glass p-7">
+            <div className="font-mono text-base break-all text-[var(--text-h)] tracking-wider">{target}</div>
+            <div className="text-xs mt-2 text-[var(--subtle)]">Sending address from treasury deposit = permanent league profile.</div>
           </div>
 
-          <div className="card text-sm">Picks, points, and entry proof will appear here once the full data layer + scoring is implemented.</div>
+          <div className="glass p-7 text-sm">Picks and points will load here once scoring + persistent storage are connected.</div>
         </div>
       )}
     </div>

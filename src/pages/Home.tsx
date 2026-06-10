@@ -8,49 +8,56 @@ export function Home() {
   const { connected } = useWallet()
 
   return (
-    <div className="space-y-16 pb-12">
+    <div className="space-y-16 pb-12 relative">
+      {/* Subtle liquid background accents for new-age depth */}
+      <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
+        <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-[radial-gradient(circle,#a855f7_0%,transparent_70%)] opacity-[0.035] blur-3xl" />
+        <div className="absolute bottom-[-30%] right-[-15%] w-[700px] h-[700px] bg-[radial-gradient(circle,#7c3aed_0%,transparent_65%)] opacity-[0.04] blur-3xl" />
+      </div>
+
       {/* Hero */}
-      <div className="pt-12 md:pt-16 text-center">
+      <div className="pt-12 md:pt-16 text-center relative">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface-2)] px-4 py-1 text-xs tracking-[3px] text-[var(--subtle)] mb-6"
+          className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 backdrop-blur px-5 py-1 text-xs tracking-[3.5px] text-[var(--subtle)] mb-8"
         >
           FIFA WORLD CUP 2026  •  48 TEAMS  •  104 MATCHES
         </motion.div>
 
-        <h1 className="display text-[72px] md:text-[92px] font-semibold tracking-[-5.5px] leading-[0.88] text-[var(--text-h)] mb-4">
+        <h1 className="display text-[68px] md:text-[88px] font-semibold tracking-[-5.8px] leading-[0.86] text-[var(--text-h)] mb-5">
           The most<br />premium<br />World Cup pool.
         </h1>
 
-        <p className="max-w-md mx-auto text-xl text-[var(--text)] tracking-[-0.2px]">
-          Send a fixed amount of the official token to the treasury.<br />
-          Your wallet becomes your identity. Predict 1X2. Top scorers take the pot.
+        <p className="max-w-[460px] mx-auto text-[17px] text-[var(--text)]/90 tracking-[-0.15px]">
+          Send the entry in the official token to the treasury.<br />
+          Your sending wallet <span className="text-[var(--text-h)]">is</span> your identity. 
+          Predict 1X2. Highest scorers claim the pot.
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-9">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-10">
           <NavLink 
             to="/predict" 
             className="btn-outline px-9 py-3.5 text-base"
           >
-            View Matches &amp; Predict
+            Explore Matches
           </NavLink>
           <SendEntryButton />
         </div>
 
-        <div className="mt-4 text-xs text-[var(--subtle)]">
+        <div className="mt-5 text-xs text-[var(--subtle)]/80">
           {connected 
-            ? "Wallet connected — send the entry fee from this address to unlock your profile" 
-            : "Connect your wallet to participate"}
+            ? "Connected — send entry from this wallet to join the league" 
+            : "Connect wallet to send entry or view your profile"}
         </div>
       </div>
 
-      {/* Live Pot — the hero visual */}
-      <div className="max-w-3xl mx-auto">
-        <div className="text-center mb-4">
-          <div className="pill mx-auto mb-3">LIVE ON-CHAIN</div>
-          <div className="text-[var(--subtle)] text-sm tracking-[1.5px] font-medium">THE POT</div>
+      {/* Live Pot — ultra liquid glass centerpiece */}
+      <div className="max-w-[820px] mx-auto px-2">
+        <div className="text-center mb-5">
+          <div className="inline-flex items-center gap-2 text-[10px] tracking-[3px] text-[var(--subtle)]/70 font-medium mb-1">LIVE • VERIFIABLE ON SOLANA</div>
+          <div className="text-2xl tracking-[-1px] text-[var(--text-h)]">The Pot</div>
         </div>
         <PotDisplay />
       </div>
@@ -82,12 +89,12 @@ export function Home() {
           ].map((step, i) => (
             <motion.div 
               key={i}
-              whileHover={{ y: -4 }}
-              className="card group"
+              whileHover={{ y: -3 }}
+              className="glass group p-7 md:p-8"
             >
-              <div className="font-mono text-xs tracking-[3px] text-[var(--accent-2)] mb-3">{step.num}</div>
-              <div className="text-[var(--text-h)] text-2xl font-semibold tracking-[-0.5px] mb-3 group-hover:text-[var(--accent-2)] transition-colors">{step.title}</div>
-              <p className="text-[15px] leading-relaxed text-[var(--text)]">{step.desc}</p>
+              <div className="font-mono text-xs tracking-[3.5px] text-[var(--accent-2)]/90 mb-4">{step.num}</div>
+              <div className="text-[var(--text-h)] text-[22px] font-semibold tracking-[-0.6px] mb-3.5 group-hover:text-[var(--accent-2)] transition-colors">{step.title}</div>
+              <p className="text-[15px] leading-relaxed text-[var(--text)]/90">{step.desc}</p>
             </motion.div>
           ))}
         </div>

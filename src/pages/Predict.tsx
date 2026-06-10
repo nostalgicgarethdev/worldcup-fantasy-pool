@@ -61,22 +61,22 @@ export function Predict() {
       </div>
 
       {!connected && (
-        <div className="card max-w-sm">
+        <div className="glass max-w-sm p-6">
           <p className="mb-3 text-sm">Connect a real wallet for production use. Current view is a working demo.</p>
           <WalletMultiButton />
         </div>
       )}
 
       {!hasEntry && (
-        <div className="card border-[var(--accent)]/40 bg-[var(--accent)]/5">
+        <div className="glass border border-white/10 p-6">
           <div className="flex flex-col sm:flex-row sm:items-center gap-3 justify-between">
             <div>
-              <div className="font-medium">You have not entered yet</div>
-              <div className="text-sm text-[var(--subtle)]">Send exactly {config.entryFee.toLocaleString()} {config.tokenSymbol} from this wallet to the treasury (the sending address becomes your profile).</div>
+              <div className="font-medium text-[var(--text-h)]">You have not entered yet</div>
+              <div className="text-sm text-[var(--subtle)] mt-1">Send exactly {config.entryFee.toLocaleString()} {config.tokenSymbol} from this wallet to the treasury.<br />The sending address becomes your profile.</div>
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-2 mt-3 sm:mt-0">
               <SendEntryButton onSuccess={() => setHasEntry(true)} />
-              <button onClick={demoPay} className="btn-outline whitespace-nowrap text-xs">Demo pay (local)</button>
+              <button onClick={demoPay} className="btn-outline text-xs whitespace-nowrap">Demo pay</button>
             </div>
           </div>
         </div>
@@ -91,26 +91,32 @@ export function Predict() {
               const current = picks[m.id]
               const locked = false // real lock time logic later
               return (
-                <div key={m.id} className="card flex flex-col md:flex-row md:items-center gap-3 md:gap-4">
+                <div key={m.id} className="glass flex flex-col md:flex-row md:items-center gap-4 md:gap-6 p-5 md:p-6">
                   <div className="flex-1 min-w-0">
-                    <div className="font-medium text-[var(--text-h)]">{m.home} <span className="text-[var(--subtle)]">vs</span> {m.away}</div>
-                    <div className="text-xs text-[var(--subtle)]">{m.date} {m.time} • {m.venue}</div>
+                    <div className="flex items-baseline gap-3 text-lg">
+                      <span className="font-semibold text-[var(--text-h)] tracking-[-0.3px]">{m.home}</span>
+                      <span className="text-[10px] uppercase tracking-[2px] text-[var(--subtle)]/70">vs</span>
+                      <span className="font-semibold text-[var(--text-h)] tracking-[-0.3px]">{m.away}</span>
+                    </div>
+                    <div className="text-xs text-[var(--subtle)]/80 mt-1.5">{m.date} {m.time} • {m.venue}</div>
                   </div>
 
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 md:gap-2.5 md:min-w-[300px]">
                     {(['H', 'D', 'A'] as const).map(p => (
                       <button
                         key={p}
                         disabled={!hasEntry || locked}
                         onClick={() => setPick(m.id, p)}
-                        className={`btn px-4 py-1.5 text-sm border ${current === p ? 'border-[var(--accent)] bg-[var(--accent)]/10 text-[var(--text-h)]' : 'border-[var(--border)] hover:border-[var(--accent)]/60'}`}
+                        className={`flex-1 rounded-2xl border py-[9px] text-sm font-medium transition-all active:scale-[0.985] ${current === p 
+                          ? 'border-[var(--accent-2)] bg-white/5 text-[var(--text-h)] shadow-inner' 
+                          : 'border-white/10 hover:border-white/25 text-[var(--text)] hover:text-[var(--text-h)]'}`}
                       >
                         {p === 'H' ? 'Home' : p === 'D' ? 'Draw' : 'Away'}
                       </button>
                     ))}
                   </div>
 
-                  {current && <div className="text-[10px] text-[var(--accent)] w-16">Your pick: {current}</div>}
+                  {current && <div className="text-[10px] uppercase tracking-widest text-[var(--accent-2)]/90 md:w-14 md:text-right font-medium">Picked {current}</div>}
                 </div>
               )
             })}

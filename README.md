@@ -2,6 +2,8 @@
 
 **GitHub:** https://github.com/nostalgicgarethdev/worldcup-fantasy-pool
 
+**Live site:** Deploy via Vercel (see below) — now with a premium, new-age professional design.
+
 Real $TOKEN (pump.fun) prediction pool. Users send a fixed entry fee from their wallet to your treasury. The sending address becomes their league profile. 1X2 picks on matches. 3 pts per correct outcome. Staged phase winners + final overall winner take (portions of) the visible pot.
 
 Real $TOKEN (pump.fun) prediction pool. Users send a fixed entry fee from their wallet to your treasury. The sending address becomes their league profile. 1X2 picks on matches. 3 pts per correct outcome. Staged phase winners + final overall winner take (portions of) the visible pot.
@@ -63,10 +65,34 @@ Everything is transparent — anyone can look at the treasury on Solscan.
 - Admin panel for entering results + generating payout lists
 - Proper lock times + tx verification endpoint for entries
 
-## Deploy
+## Deploy (Recommended)
 
-- Web: Vercel (or gh-pages) — standard Vite build.
-- For shared multi-user: point at a real API (Fly, Railway, or Supabase) or use the local SQLite server you can deploy alongside.
+The site is designed to be deployed as a static frontend (Vercel is perfect and what your other projects use).
+
+**Fastest professional deploy:**
+
+1. Go to https://vercel.com/new
+2. Import the GitHub repo: `nostalgicgarethdev/worldcup-fantasy-pool`
+3. Vercel will auto-detect Vite + use the `vercel.json` we added for React Router.
+4. Deploy.
+
+Every push to main will auto-deploy.
+
+You can also run locally with `npm run build && npx vercel --prod` after running `vercel login`.
+
+**Note on the token:** The treasury is now set. For the Send Entry button and exact $TOKEN pot balance to work, also set your pump.fun token mint in `src/lib/config.ts`. Currently transfers will show a friendly error until the mint is provided.
+
+## Design
+
+The UI has been elevated to a very premium, new-age, high-end aesthetic:
+- Bold confident typography
+- Luxurious live Pot display as the hero element
+- Clean modern cards with excellent spacing
+- Subtle professional motion (framer-motion)
+- Strong visual hierarchy and trust signals
+- Tactile prediction pickers
+
+Not bland — sharp, expensive, web3/sports product feel.
 
 ## Important Notes
 

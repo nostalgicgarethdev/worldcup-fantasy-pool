@@ -15,16 +15,17 @@ function Header() {
   const isAdmin = false // will be wired to treasury/organizer wallet check later
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[#09090b]/95 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-        <div className="flex items-center gap-3">
-          <NavLink to="/" className="flex items-center gap-2 font-semibold text-[var(--text-h)] tracking-tight text-lg">
+    <header className="sticky top-0 z-50 glass border-b border-white/10 bg-black/40 backdrop-blur-2xl">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+        <div className="flex items-center gap-4">
+          <NavLink to="/" className="flex items-center gap-3 font-semibold text-[var(--text-h)] tracking-[-0.5px] text-xl">
+            <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[var(--accent)] to-[var(--accent-2)] flex items-center justify-center text-white text-xs font-bold">WC</div>
             WC Pool
           </NavLink>
-          <div className="hidden text-[10px] text-[var(--subtle)] sm:block">FIFA 2026 • $TOKEN</div>
+          <div className="hidden text-[10px] uppercase tracking-[3px] text-[var(--subtle)]/70 sm:block">FIFA 2026</div>
         </div>
 
-        <nav className="hidden items-center gap-1 text-sm md:flex">
+        <nav className="hidden items-center gap-2 text-sm md:flex">
           <NavLink to="/predict" className={({ isActive }) => navClass(isActive)}>Predict</NavLink>
           <NavLink to="/leaderboard" className={({ isActive }) => navClass(isActive)}>Leaderboard</NavLink>
           <NavLink to="/rules" className={({ isActive }) => navClass(isActive)}>Rules</NavLink>
@@ -39,7 +40,7 @@ function Header() {
           {publicKey && (
             <NavLink
               to={`/profile/${publicKey.toBase58()}`}
-              className="text-xs text-[var(--subtle)] hover:text-[var(--text-h)] hidden md:block"
+              className="text-xs px-3 py-1.5 rounded-full border border-white/10 hover:bg-white/5 text-[var(--subtle)] hover:text-[var(--text-h)] hidden md:block transition-colors"
             >
               My Profile
             </NavLink>
@@ -47,9 +48,9 @@ function Header() {
         </div>
       </div>
 
-      {/* Mobile nav */}
-      <div className="md:hidden border-t border-[var(--border)]">
-        <div className="mx-auto flex max-w-6xl gap-1 overflow-x-auto px-4 py-2 text-sm">
+      {/* Mobile nav - glassy */}
+      <div className="md:hidden border-t border-white/10 bg-black/30 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-6xl gap-1 overflow-x-auto px-4 py-3 text-sm">
           <NavLink to="/predict" className={({ isActive }) => navClass(isActive)}>Predict</NavLink>
           <NavLink to="/leaderboard" className={({ isActive }) => navClass(isActive)}>Leaderboard</NavLink>
           <NavLink to="/rules" className={({ isActive }) => navClass(isActive)}>Rules</NavLink>
@@ -61,15 +62,17 @@ function Header() {
 }
 
 function navClass(isActive: boolean) {
-  return `rounded-lg px-3 py-1.5 transition-colors ${isActive ? 'bg-[var(--surface)] text-[var(--text-h)]' : 'text-[var(--subtle)] hover:text-[var(--text-h)]'}`
+  return `rounded-full px-4 py-1.5 text-sm transition-all ${isActive 
+    ? 'bg-white/10 text-[var(--text-h)] border border-white/20' 
+    : 'text-[var(--subtle)] hover:text-[var(--text-h)] hover:bg-white/5' }`
 }
 
 export default function App() {
   return (
-    <div className="flex min-h-screen flex-col bg-[#09090b] text-[var(--text)]">
+    <div className="flex min-h-screen flex-col bg-[#050507] text-[var(--text)]">
       <Header />
 
-      <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-8">
+      <main className="mx-auto w-full max-w-6xl flex-1 px-5 py-10">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/predict" element={<Predict />} />
@@ -78,13 +81,13 @@ export default function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/rules" element={<Rules />} />
           <Route path="/admin" element={<Admin />} />
-          <Route path="*" element={<div className="card text-center">Page not found. <NavLink to="/" className="text-[var(--accent)]">Go home</NavLink></div>} />
+          <Route path="*" element={<div className="glass p-8 text-center">Page not found. <NavLink to="/" className="text-[var(--accent-2)] underline">Go home</NavLink></div>} />
         </Routes>
       </main>
 
-      <footer className="border-t border-[var(--border)] py-6 text-center text-xs text-[var(--subtle)]">
-        Entry = send exact fee from your wallet to the treasury. Your sending address = your league profile.
-        Pot = live on-chain $TOKEN balance of treasury. Organizer distributes manually at phase ends / final.
+      <footer className="glass mt-auto border-t border-white/10 py-5 text-center text-xs text-[var(--subtle)]/70">
+        Entry = send exact fee from your wallet to the treasury. Your sending address = your league profile. 
+        Pot = live verifiable treasury balance. Payouts executed manually by the organizer.
       </footer>
     </div>
   )

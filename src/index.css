@@ -27,13 +27,44 @@ body {
 
 #root { min-height: 100vh; }
 
-/* Clean professional components */
-.card {
-  border-radius: 20px;
-  border: 1px solid var(--border);
-  background: var(--surface);
+/* ===== LIQUID GLASS THEME - Premium New Age ===== */
+.card, .glass {
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(17, 17, 21, 0.55);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
   padding: 24px;
-  box-shadow: 0 10px 30px -15px rgb(0 0 0 / 0.25);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition: transform 0.2s cubic-bezier(0.23, 1.0, 0.32, 1), 
+              box-shadow 0.2s cubic-bezier(0.23, 1.0, 0.32, 1),
+              border-color 0.2s;
+}
+
+.card:hover, .glass:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Liquid highlight layer for extra depth */
+.glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255,255,255,0.08) 0%,
+    rgba(255,255,255,0.01) 50%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 1;
 }
 
 .btn {
@@ -42,26 +73,45 @@ body {
   justify-content: center;
   gap: 8px;
   border-radius: 9999px;
-  padding: 12px 28px;
+  padding: 14px 32px;
   font-size: 14px;
   font-weight: 600;
-  transition: all 0.15s ease;
+  letter-spacing: -0.2px;
+  transition: all 0.15s cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+  overflow: hidden;
 }
 
 .btn-primary {
-  background: linear-gradient(to right, var(--accent), var(--accent-2));
+  background: linear-gradient(145deg, var(--accent), var(--accent-2));
   color: white;
-  box-shadow: 0 4px 15px -2px rgb(124 58 237 / 0.35);
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 4px 20px -2px rgba(124, 58, 237, 0.5);
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.2),
+    transparent
+  );
+  opacity: 0.6;
 }
 
 .btn-outline {
-  border: 1px solid var(--border);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255,255,255,0.03);
   color: var(--text-h);
+  backdrop-filter: blur(12px);
 }
 
 .btn-outline:hover {
-  background: var(--surface-2);
-  border-color: #363640;
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
 }
 
 .stat {
