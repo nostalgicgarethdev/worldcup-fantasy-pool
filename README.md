@@ -54,16 +54,18 @@ Everything is transparent — anyone can look at the treasury on Solscan.
 - ✅ Real SPL token entry transfer (Send button builds the tx)
 - ✅ Working per-wallet prediction picks (saved locally for demo)
 - ✅ Demo "pay" for instant testing without real tokens
-- ⏳ Full 104 matches + real server + SQLite + scoring engine + admin result entry + payout list (being added next)
+- ✅ Full 104-match schedule (official 2026 data: 72 group + R32/R16/QF/SF/third/final bracket with placeholders)
+- ⏳ Server-backed persistence (SQLite) + real scoring engine + admin result entry + payout lists
+- ⏳ Proper per-match lock times + tx verification for entries
 - ⏳ Optional display usernames (sign message after entry)
 
 ## Next (what will be added very soon)
 
-- Full match schedule (all groups + knockout bracket from official data)
-- Server-backed persistence (SQLite today, easy Supabase later)
-- Real scoring + live leaderboard
-- Admin panel for entering results + generating payout lists
-- Proper lock times + tx verification endpoint for entries
+- Server-backed persistence (SQLite for local/dev, easy Supabase/Vercel KV later)
+- Real scoring + live leaderboard (compute from entered results + saved picks)
+- Admin panel for entering results (after matches) + generating payout lists for phases/final
+- Proper per-match lock times + on-chain tx verification for entries (prevent post-kickoff picks)
+- (Optional) sign-to-set display name after entry paid
 
 ## Deploy (Recommended)
 

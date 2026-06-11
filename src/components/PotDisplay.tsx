@@ -97,17 +97,17 @@ export function PotDisplay({ compact = false }: { compact?: boolean }) {
             <div className="pill">
               <span className="live-dot inline-block w-1.5 h-1.5 rounded-full bg-[var(--success)]" /> LIVE
             </div>
-            <div className="text-xs uppercase tracking-[2px] text-[var(--subtle)] font-medium">TREASURY BALANCE</div>
+            <div className="text-sm uppercase tracking-[2px] text-white/80 font-medium drop-shadow">TREASURY BALANCE</div>
           </div>
 
           <div className="flex items-baseline gap-3">
-            <div className="text-[72px] md:text-[86px] font-semibold tracking-[-4.5px] leading-none text-[var(--text-h)] tabular-nums">
+            <div className="text-[72px] md:text-[86px] font-semibold tracking-[-4.5px] leading-none text-[var(--text-h)] tabular-nums drop-shadow">
               {loading ? '…' : displayAmount}
             </div>
-            <div className="text-3xl font-medium text-[var(--text)] pb-2">{config.tokenSymbol}</div>
+            <div className="text-3xl font-medium text-white drop-shadow pb-2">{config.tokenSymbol}</div>
           </div>
 
-          <div className="text-sm text-[var(--subtle)] mt-1">
+          <div className="text-base text-white/80 mt-1 drop-shadow">
             Real-time on-chain • Refreshes every ~25s
           </div>
         </div>
@@ -117,7 +117,7 @@ export function PotDisplay({ compact = false }: { compact?: boolean }) {
             href={`https://solscan.io/account/${treasury}`}
             target="_blank"
             rel="noreferrer"
-            className="btn-ghost text-xs mt-1 hidden md:flex"
+            className="btn-ghost text-sm mt-1 hidden md:flex drop-shadow"
           >
             VIEW ON SOLSCAN →
           </a>
@@ -129,18 +129,18 @@ export function PotDisplay({ compact = false }: { compact?: boolean }) {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(168,85,247,0.04),transparent_60%)] pointer-events-none" />
 
       {isConfigured && (
-        <div className="relative z-10 mt-8 pt-6 border-t border-white/10 flex items-center justify-between text-xs">
-          <div className="font-mono text-[var(--subtle)]/80 break-all tracking-wider">
+        <div className="relative z-10 mt-8 pt-6 border-t border-white/10 flex items-center justify-between text-sm">
+          <div className="font-mono text-white/80 break-all tracking-wider drop-shadow">
             {shortAddress(treasury, 6, 6)}
           </div>
           {!hasMint && (
-            <div className="text-[var(--warn)]/90 text-[10px] px-2 py-px rounded bg-white/5">Set mint in config for token balance</div>
+            <div className="text-[var(--warn)]/90 text-xs px-2 py-px rounded bg-white/5">Set mint in config for token balance</div>
           )}
         </div>
       )}
 
       {!isConfigured && (
-        <div className="relative z-10 mt-4 text-sm text-[var(--warn)]/90">
+        <div className="relative z-10 mt-4 text-base text-white/90 drop-shadow">
           Treasury set. Provide your pump.fun token mint for full $TOKEN display + transfers.
         </div>
       )}

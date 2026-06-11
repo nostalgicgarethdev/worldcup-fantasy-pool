@@ -52,17 +52,17 @@ export function Predict() {
     <div className="space-y-6 max-w-5xl mx-auto">
       <div className="flex items-end justify-between">
         <div>
-          <h1 className="text-3xl font-semibold tracking-tight text-[var(--text-h)]">Predict Matches</h1>
-          <p className="text-[var(--subtle)]">1X2 • 3 points per correct outcome • locks at kickoff</p>
+          <h1 className="text-4xl font-semibold tracking-tight text-white drop-shadow">Predict Matches</h1>
+          <p className="text-base text-white/90 mt-1">1X2 • 3 points per correct outcome • locks at kickoff</p>
         </div>
-        <div className="text-right text-xs text-[var(--subtle)]">
+        <div className="text-right text-sm text-white/80 drop-shadow">
           {connected ? `Connected: ${wallet.slice(0, 6)}...` : 'Demo mode (connect for real wallet)'}
         </div>
       </div>
 
       {!connected && (
         <div className="glass max-w-sm p-6">
-          <p className="mb-3 text-sm">Connect a real wallet for production use. Current view is a working demo.</p>
+          <p className="mb-3 text-base">Connect a real wallet for production use. Current view is a working demo.</p>
           <WalletMultiButton />
         </div>
       )}
@@ -71,12 +71,12 @@ export function Predict() {
         <div className="glass border border-white/10 p-6">
           <div className="flex flex-col sm:flex-row sm:items-center gap-3 justify-between">
             <div>
-              <div className="font-medium text-[var(--text-h)]">You have not entered yet</div>
-              <div className="text-sm text-[var(--subtle)] mt-1">Send exactly {config.entryFee.toLocaleString()} {config.tokenSymbol} from this wallet to the treasury.<br />The sending address becomes your profile.</div>
+              <div className="font-semibold text-[var(--text-h)] text-lg">You have not entered yet</div>
+              <div className="text-base text-[var(--subtle)] mt-1">Send exactly {config.entryFee.toLocaleString()} {config.tokenSymbol} from this wallet to the treasury.<br />The sending address becomes your profile.</div>
             </div>
             <div className="flex gap-2 mt-3 sm:mt-0">
               <SendEntryButton onSuccess={() => setHasEntry(true)} />
-              <button onClick={demoPay} className="btn-outline text-xs whitespace-nowrap">Demo pay</button>
+              <button onClick={demoPay} className="btn-outline text-sm whitespace-nowrap">Demo pay</button>
             </div>
           </div>
         </div>
@@ -86,19 +86,19 @@ export function Predict() {
         const groupMatches = matches.filter((m: Match) => m.group === group)
         return (
           <div key={group} className="space-y-3">
-            <div className="text-[10px] uppercase tracking-[2.5px] text-[var(--subtle)]/70 pl-1.5 mb-1">GROUP {group}</div>
+            <div className="text-sm uppercase tracking-[2.5px] text-white/70 pl-1.5 mb-1 drop-shadow">GROUP {group}</div>
             {groupMatches.map((m: Match) => {
               const current = picks[m.id]
               const locked = false // real lock time logic later
               return (
                 <div key={m.id} className="glass flex flex-col md:flex-row md:items-center gap-4 md:gap-6 p-5 md:p-6">
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-baseline gap-3 text-lg">
+                    <div className="flex items-baseline gap-3 text-xl">
                       <span className="font-semibold text-[var(--text-h)] tracking-[-0.3px]">{m.home}</span>
-                      <span className="text-[10px] uppercase tracking-[2px] text-[var(--subtle)]/70">vs</span>
+                      <span className="text-sm uppercase tracking-[2px] text-white/70">vs</span>
                       <span className="font-semibold text-[var(--text-h)] tracking-[-0.3px]">{m.away}</span>
                     </div>
-                    <div className="text-xs text-[var(--subtle)]/80 mt-1.5">{m.date} {m.time} • {m.venue}</div>
+                    <div className="text-sm text-white/80 mt-1.5 drop-shadow">{m.date} {m.time} • {m.venue}</div>
                   </div>
 
                   <div className="flex gap-2 md:gap-2.5 md:min-w-[300px]">
@@ -107,7 +107,7 @@ export function Predict() {
                         key={p}
                         disabled={!hasEntry || locked}
                         onClick={() => setPick(m.id, p)}
-                        className={`flex-1 rounded-2xl border py-[9px] text-sm font-medium transition-all active:scale-[0.985] ${current === p 
+                        className={`flex-1 rounded-2xl border py-[10px] text-base font-medium transition-all active:scale-[0.985] ${current === p 
                           ? 'border-[var(--accent-2)] bg-white/5 text-[var(--text-h)] shadow-inner' 
                           : 'border-white/10 hover:border-white/25 text-[var(--text)] hover:text-[var(--text-h)]'}`}
                       >
@@ -116,7 +116,7 @@ export function Predict() {
                     ))}
                   </div>
 
-                  {current && <div className="text-[10px] uppercase tracking-widest text-[var(--accent-2)]/90 md:w-14 md:text-right font-medium">Picked {current}</div>}
+                  {current && <div className="text-sm uppercase tracking-widest text-[var(--accent-2)]/90 md:w-14 md:text-right font-medium drop-shadow">Picked {current}</div>}
                 </div>
               )
             })}
@@ -124,8 +124,8 @@ export function Predict() {
         )
       })}
 
-      <div className="text-xs text-[var(--subtle)] pt-2">
-        Full 104-match schedule (all groups + complete bracket) + real per-match lock times + server-backed persistence coming in the next implementation steps. Picks above are saved to this browser for the current wallet.
+      <div className="text-sm text-white/80 pt-2 drop-shadow">
+        Full 104-match schedule loaded (72 group stage + complete bracket). Picks saved locally per wallet for demo. Real lock times, server persistence + on-chain entry verification next.
       </div>
     </div>
   )

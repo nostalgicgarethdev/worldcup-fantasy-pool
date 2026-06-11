@@ -9,7 +9,6 @@ import { Leaderboard } from './pages/Leaderboard'
 import { Profile } from './pages/Profile'
 import { Rules } from './pages/Rules'
 import { Admin } from './pages/Admin'
-import { CursorLiquidMask } from './components/CursorLiquidMask'
 
 function Header() {
   const { publicKey } = useWallet()
@@ -23,7 +22,7 @@ function Header() {
             <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[var(--accent)] to-[var(--accent-2)] flex items-center justify-center text-white text-xs font-bold">WC</div>
             WC Pool
           </NavLink>
-          <div className="hidden text-[10px] uppercase tracking-[3px] text-[var(--subtle)]/70 sm:block">FIFA 2026</div>
+          <div className="hidden text-xs uppercase tracking-[3px] text-white/70 sm:block drop-shadow">FIFA 2026</div>
         </div>
 
         <nav className="hidden items-center gap-2 text-sm md:flex">
@@ -41,7 +40,7 @@ function Header() {
           {publicKey && (
             <NavLink
               to={`/profile/${publicKey.toBase58()}`}
-              className="text-xs px-3 py-1.5 rounded-full border border-white/10 hover:bg-white/5 text-[var(--subtle)] hover:text-[var(--text-h)] hidden md:block transition-colors"
+              className="text-sm px-3 py-1.5 rounded-full border border-white/10 hover:bg-white/5 text-white/80 hover:text-white hidden md:block transition-colors drop-shadow"
             >
               My Profile
             </NavLink>
@@ -51,7 +50,7 @@ function Header() {
 
       {/* Mobile nav - glassy */}
       <div className="md:hidden border-t border-white/10 bg-black/30 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-6xl gap-1 overflow-x-auto px-4 py-3 text-sm">
+        <div className="mx-auto flex max-w-6xl gap-1 overflow-x-auto px-4 py-3 text-base">
           <NavLink to="/predict" className={({ isActive }) => navClass(isActive)}>Predict</NavLink>
           <NavLink to="/leaderboard" className={({ isActive }) => navClass(isActive)}>Leaderboard</NavLink>
           <NavLink to="/rules" className={({ isActive }) => navClass(isActive)}>Rules</NavLink>
@@ -63,24 +62,16 @@ function Header() {
 }
 
 function navClass(isActive: boolean) {
-  return `rounded-full px-4 py-1.5 text-sm transition-all ${isActive 
-    ? 'bg-white/10 text-[var(--text-h)] border border-white/20' 
-    : 'text-[var(--subtle)] hover:text-[var(--text-h)] hover:bg-white/5' }`
+  return `rounded-full px-4 py-1.5 text-base transition-all ${isActive 
+    ? 'bg-white/10 text-white border border-white/20' 
+    : 'text-white/80 hover:text-white hover:bg-white/5' }`
 }
 
 export default function App() {
   return (
-    <div className="flex min-h-screen flex-col text-[var(--text)] relative">
-      {/* Real background image layer - fixed so liquid glass blurs over it nicely */}
-      <div 
-        className="fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `
-            linear-gradient(145deg, rgba(5,5,15,0.42) 0%, rgba(10,6,25,0.38) 45%, rgba(8,5,20,0.48) 100%),
-            url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=2000&q=80')
-          `
-        }}
-      />
+    <div className="flex min-h-screen flex-col text-[var(--text)]">
+      {/* Fixed World Cup hero background (local asset /hero.png) - guarantees the image shows for everyone */}
+      <div className="bg-worldcup" aria-hidden="true" />
       <Header />
 
       {/* Main content "canvas" with rich background so the liquid glass panels can shine (inspired by the reference) */}
@@ -97,13 +88,10 @@ export default function App() {
         </Routes>
       </main>
 
-      <footer className="glass mt-auto border-t border-white/10 py-5 text-center text-xs text-[var(--subtle)]/70">
+      <footer className="glass mt-auto border-t border-white/10 py-5 text-center text-sm text-white/80 drop-shadow">
         Entry = send exact fee from your wallet to the treasury. Your sending address = your league profile. 
         Pot = live verifiable treasury balance. Payouts executed manually by the organizer.
       </footer>
-
-      {/* Liquid cursor mask effect - premium spotlight that follows the mouse and "activates" the glass (like https://cursor-mask-effect.webflow.io/) */}
-      <CursorLiquidMask />
     </div>
   )
 }
