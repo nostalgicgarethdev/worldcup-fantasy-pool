@@ -19,17 +19,16 @@ function Header() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <div className="flex items-center gap-4">
           <NavLink to="/" className="flex items-center gap-3 font-semibold text-white tracking-[-0.5px] text-xl drop-shadow">
-            <img src="/wcpool-logo.png" alt="WCPOOL" className="w-9 h-9" />
-            WC Pool
+            <img src="/wcpool-logo.jpg" alt="WCPOOL" className="h-5 w-auto max-w-[36px]" />
           </NavLink>
           <div className="hidden text-xs uppercase tracking-[3px] text-white sm:block drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">FIFA 2026</div>
         </div>
 
-        <nav className="hidden items-center gap-2 text-sm md:flex">
-          <NavLink to="/predict" className={({ isActive }) => navClass(isActive)}>Predict</NavLink>
-          <NavLink to="/leaderboard" className={({ isActive }) => navClass(isActive)}>Leaderboard</NavLink>
-          <NavLink to="/rules" className={({ isActive }) => navClass(isActive)}>Rules</NavLink>
-          {isAdmin && <NavLink to="/admin" className={({ isActive }) => navClass(isActive)}>Admin</NavLink>}
+        <nav className="hidden items-center gap-8 text-sm md:flex text-white">
+          <NavLink to="/predict" className={({ isActive }) => `text-white ${navClass(isActive)}`}>Predict</NavLink>
+          <NavLink to="/leaderboard" className={({ isActive }) => `text-white ${navClass(isActive)}`}>Leaderboard</NavLink>
+          <NavLink to="/rules" className={({ isActive }) => `text-white ${navClass(isActive)}`}>Rules</NavLink>
+          {isAdmin && <NavLink to="/admin" className={({ isActive }) => `text-white ${navClass(isActive)}`}>Admin</NavLink>}
         </nav>
 
         <div className="flex items-center gap-3">
@@ -40,7 +39,7 @@ function Header() {
           {publicKey && (
             <NavLink
               to={`/profile/${publicKey.toBase58()}`}
-              className="text-sm px-3 py-1.5 rounded-full border border-white/10 hover:bg-white/5 text-white hidden md:block transition-colors drop-shadow-[0_1px_3px_rgba(0,0,0,0.7)]"
+              className="text-sm px-3 py-1.5 rounded-full border border-white/10 hover:bg-white/5 text-white hidden md:block transition-colors drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]"
             >
               My Profile
             </NavLink>
@@ -49,12 +48,12 @@ function Header() {
       </div>
 
       {/* Mobile nav - glassy */}
-      <div className="md:hidden border-t border-white/10 bg-black/30 backdrop-blur-xl text-white">
-        <div className="mx-auto flex max-w-6xl gap-1 overflow-x-auto px-4 py-3 text-base">
-          <NavLink to="/predict" className={({ isActive }) => navClass(isActive)}>Predict</NavLink>
-          <NavLink to="/leaderboard" className={({ isActive }) => navClass(isActive)}>Leaderboard</NavLink>
-          <NavLink to="/rules" className={({ isActive }) => navClass(isActive)}>Rules</NavLink>
-          <NavLink to="/profile" className={({ isActive }) => navClass(isActive)}>Profile</NavLink>
+      <div className="md:hidden border-t border-white/10 bg-black/30 backdrop-blur-xl mobile-nav">
+        <div className="mx-auto flex max-w-6xl gap-8 overflow-x-auto px-4 py-3 text-base text-white">
+          <NavLink to="/predict" className={({ isActive }) => `text-white ${navClass(isActive)}`}>Predict</NavLink>
+          <NavLink to="/leaderboard" className={({ isActive }) => `text-white ${navClass(isActive)}`}>Leaderboard</NavLink>
+          <NavLink to="/rules" className={({ isActive }) => `text-white ${navClass(isActive)}`}>Rules</NavLink>
+          <NavLink to="/profile" className={({ isActive }) => `text-white ${navClass(isActive)}`}>Profile</NavLink>
         </div>
       </div>
     </header>

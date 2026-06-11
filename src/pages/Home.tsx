@@ -15,7 +15,7 @@ export function Home() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 backdrop-blur px-5 py-1.5 text-sm tracking-[3.5px] text-white mb-8 drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]"
+          className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 backdrop-blur px-5 py-1.5 text-sm tracking-[3.5px] text-white mb-8 drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]"
         >
           FIFA WORLD CUP 2026  •  48 TEAMS  •  104 MATCHES
         </motion.div>

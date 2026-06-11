@@ -289,6 +289,12 @@ body {
   scroll-snap-align: start;
 }
 
+/* Force white text on mobile bottom nav for visibility over dark stadium bg */
+.mobile-nav a {
+  color: #ffffff !important;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.9) !important;
+}
+
 /* Hide scrollbar but keep functionality */
 .scrollbar-hide {
   -ms-overflow-style: none;  /* IE and Edge */
