@@ -88,6 +88,11 @@ export default function App() {
       <footer className="glass mt-auto border-t border-white/10 py-5 text-center text-sm text-white drop-shadow">
         Entry = send exact fee from your wallet to the treasury. Your sending address = your league profile. 
         Pot = live verifiable treasury balance. Payouts executed manually by the organizer.
+        <div className="mt-1 text-xs">
+          <a href="https://github.com/nostalgicgarethdev/worldcup-fantasy-pool" target="_blank" rel="noreferrer" className="hover:text-white underline">GitHub</a>
+          {" · "}
+          <a href="https://x.com/WCPOOLSOLANA" target="_blank" rel="noreferrer" className="hover:text-white underline">X @WCPOOLSOLANA</a>
+        </div>
       </footer>
     </div>
   )
