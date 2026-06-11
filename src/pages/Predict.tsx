@@ -59,9 +59,9 @@ export function Predict() {
       <div className="flex items-end justify-between">
         <div>
           <h1 className="text-4xl font-semibold tracking-tight text-white drop-shadow">Predict Matches</h1>
-          <p className="text-base text-white/90 mt-1">1X2 • 3 points per correct outcome • locks at kickoff</p>
+          <p className="text-base text-white mt-1">1X2 • 3 points per correct outcome • locks at kickoff</p>
         </div>
-        <div className="text-right text-sm text-white/80 drop-shadow">
+        <div className="text-right text-sm text-white drop-shadow">
           {connected ? `Connected: ${wallet.slice(0, 6)}...` : 'Demo mode (connect for real wallet)'}
         </div>
       </div>
@@ -78,7 +78,7 @@ export function Predict() {
           <div className="flex flex-col sm:flex-row sm:items-center gap-3 justify-between">
             <div>
               <div className="font-semibold text-white text-lg">You have not entered yet</div>
-              <div className="text-base text-[var(--subtle)] mt-1">Send exactly {config.entryFee.toLocaleString()} {config.tokenSymbol} from this wallet to the treasury.<br />The sending address becomes your profile.</div>
+              <div className="text-base text-white/95 mt-1 drop-shadow">Send exactly {config.entryFee.toLocaleString()} {config.tokenSymbol} from this wallet to the treasury.<br />The sending address becomes your profile.</div>
             </div>
             <div className="flex gap-2 mt-3 sm:mt-0">
               <SendEntryButton onSuccess={() => setHasEntry(true)} />
@@ -92,7 +92,7 @@ export function Predict() {
         const groupMatches = matches.filter((m: Match) => m.group === group)
         return (
           <div key={group} className="space-y-3">
-            <div className="text-sm uppercase tracking-[2.5px] text-white/70 pl-1.5 mb-1 drop-shadow">GROUP {group}</div>
+            <div className="text-sm uppercase tracking-[2.5px] text-white pl-1.5 mb-1 drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">GROUP {group}</div>
             {groupMatches.map((m: Match) => {
               const current = picks[m.id]
               const locked = false // real lock time logic later
@@ -101,10 +101,10 @@ export function Predict() {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-baseline gap-3 text-xl">
                       <span className="font-semibold text-white tracking-[-0.3px]">{m.home}</span>
-                      <span className="text-sm uppercase tracking-[2px] text-white/70">vs</span>
+                      <span className="text-sm uppercase tracking-[2px] text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">vs</span>
                       <span className="font-semibold text-white tracking-[-0.3px]">{m.away}</span>
                     </div>
-                    <div className="text-sm text-white/80 mt-1.5 drop-shadow">{m.date} {m.time} • {m.venue}</div>
+                    <div className="text-sm text-white mt-1.5 drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">{m.date} {m.time} • {m.venue}</div>
                   </div>
 
                   <div className="flex gap-2 md:gap-2.5 md:min-w-[300px]">
@@ -115,14 +115,14 @@ export function Predict() {
                         onClick={() => setPick(m.id, p)}
                         className={`flex-1 rounded-2xl border py-[10px] text-base font-medium transition-all active:scale-[0.985] ${current === p 
                           ? 'border-[var(--accent-2)] bg-white/5 text-white shadow-inner' 
-                          : 'border-white/10 hover:border-white/25 text-white/90 hover:text-white'}`}
+                          : 'border-white/10 hover:border-white/25 text-white hover:text-white'}`}
                       >
                         {p === 'H' ? 'Home' : p === 'D' ? 'Draw' : 'Away'}
                       </button>
                     ))}
                   </div>
 
-                  {current && <div className="text-sm uppercase tracking-widest text-white/90 md:w-14 md:text-right font-medium drop-shadow">Picked {current}</div>}
+                  {current && <div className="text-sm uppercase tracking-widest text-white md:w-14 md:text-right font-medium drop-shadow">Picked {current}</div>}
                 </div>
               )
             })}
@@ -130,7 +130,7 @@ export function Predict() {
         )
       })}
 
-      <div className="text-sm text-white/80 pt-2 drop-shadow">
+      <div className="text-sm text-white pt-2 drop-shadow">
         Full 104-match schedule loaded (72 group stage + complete bracket). Picks saved locally per wallet for demo. Real lock times, server persistence + on-chain entry verification next.
       </div>
     </div>

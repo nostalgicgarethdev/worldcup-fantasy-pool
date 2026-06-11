@@ -42,39 +42,39 @@ export function Profile() {
         <>
           <div className="glass p-7">
             <div className="font-mono text-base break-all text-white tracking-wider">{target}</div>
-            <div className="text-xs mt-2 text-white/70">Sending address from treasury deposit = permanent league profile.</div>
+            <div className="text-xs mt-2 text-white drop-shadow">Sending address from treasury deposit = permanent league profile.</div>
             <div className="mt-3 flex items-center gap-3 text-sm">
               <div className="pill">DEMO</div>
-              <div>Entry status: <span className="text-white/90">localStorage (real = on-chain send verified)</span></div>
+              <div>Entry status: <span className="text-white">localStorage (real = on-chain send verified)</span></div>
             </div>
           </div>
 
           <div className="glass p-7">
             <div className="flex items-baseline gap-4 mb-4">
               <div>
-                <div className="text-xs uppercase tracking-[2px] text-white/60">YOUR SCORE</div>
+                <div className="text-xs uppercase tracking-[2px] text-white">YOUR SCORE</div>
                 <div className="text-6xl font-semibold tabular-nums tracking-[-2px] text-white drop-shadow">{score}</div>
               </div>
-              <div className="text-white/70">pts from {pickedCount} picks</div>
+              <div className="text-white">pts from {pickedCount} picks</div>
             </div>
 
             {pickedCount === 0 ? (
-              <div className="text-sm text-white/80">No predictions yet. <NavLink to="/predict" className="underline text-white/90 hover:text-white">Make your picks →</NavLink></div>
+              <div className="text-sm text-white">No predictions yet. <NavLink to="/predict" className="underline text-white hover:text-white">Make your picks →</NavLink></div>
             ) : (
               <div className="space-y-2 text-sm">
-                <div className="text-white/80 mb-2">Your current picks (demo):</div>
+                <div className="text-white mb-2">Your current picks (demo):</div>
                 {pickedMatchDetails.slice(0, 8).map((pm) => (
                   <div key={pm.id} className="flex justify-between border-b border-white/10 py-1 last:border-0">
                     <span>{pm.home} vs {pm.away}</span>
-                    <span className="font-medium text-white/90">{pm.pick}</span>
+                    <span className="font-medium text-white">{pm.pick}</span>
                   </div>
                 ))}
-                {pickedMatchDetails.length > 8 && <div className="text-xs text-white/60">+{pickedMatchDetails.length - 8} more…</div>}
+                {pickedMatchDetails.length > 8 && <div className="text-xs text-white">+{pickedMatchDetails.length - 8} more…</div>}
               </div>
             )}
           </div>
 
-          <div className="text-xs text-white/60">Full history + phase breakdowns + verified entry tx links will appear with backend.</div>
+          <div className="text-xs text-white">Full history + phase breakdowns + verified entry tx links will appear with backend.</div>
         </>
       )}
     </div>

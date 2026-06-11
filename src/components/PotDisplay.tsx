@@ -76,7 +76,7 @@ export function PotDisplay({ compact = false }: { compact?: boolean }) {
   if (compact) {
     return (
       <div className="glass rounded-2xl border border-white/10 px-3.5 py-1 text-[10px] flex items-center gap-2 font-medium tracking-widest">
-        <span className="text-[var(--subtle)]/80">POT</span>
+        <span className="text-white">POT</span>
         <span className="font-mono text-white tabular-nums text-xs">
           {loading ? '...' : displayAmount} {config.tokenSymbol}
         </span>
@@ -97,7 +97,7 @@ export function PotDisplay({ compact = false }: { compact?: boolean }) {
             <div className="pill">
               <span className="live-dot inline-block w-1.5 h-1.5 rounded-full bg-[var(--success)]" /> LIVE
             </div>
-            <div className="text-sm uppercase tracking-[2px] text-white/80 font-medium drop-shadow">TREASURY BALANCE</div>
+            <div className="text-sm uppercase tracking-[2px] text-white font-medium drop-shadow">TREASURY BALANCE</div>
           </div>
 
           <div className="flex items-baseline gap-3">
@@ -107,7 +107,7 @@ export function PotDisplay({ compact = false }: { compact?: boolean }) {
             <div className="text-3xl font-medium text-white drop-shadow pb-2">{config.tokenSymbol}</div>
           </div>
 
-          <div className="text-base text-white/80 mt-1 drop-shadow">
+          <div className="text-base text-white mt-1 drop-shadow">
             Real-time on-chain • Refreshes every ~25s
           </div>
         </div>
@@ -130,17 +130,17 @@ export function PotDisplay({ compact = false }: { compact?: boolean }) {
 
       {isConfigured && (
         <div className="relative z-10 mt-8 pt-6 border-t border-white/10 flex items-center justify-between text-sm">
-          <div className="font-mono text-white/80 break-all tracking-wider drop-shadow">
+          <div className="font-mono text-white break-all tracking-wider drop-shadow">
             {shortAddress(treasury, 6, 6)}
           </div>
           {!hasMint && (
-            <div className="text-[var(--warn)]/90 text-xs px-2 py-px rounded bg-white/5">Set mint in config for token balance</div>
+            <div className="text-white text-xs px-2 py-px rounded bg-white/5">Set mint in config for token balance</div>
           )}
         </div>
       )}
 
       {!isConfigured && (
-        <div className="relative z-10 mt-4 text-base text-white/90 drop-shadow">
+        <div className="relative z-10 mt-4 text-base text-white drop-shadow">
           Treasury set. Provide your pump.fun token mint for full $TOKEN display + transfers.
         </div>
       )}

@@ -19,10 +19,10 @@ function Header() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <div className="flex items-center gap-4">
           <NavLink to="/" className="flex items-center gap-3 font-semibold text-white tracking-[-0.5px] text-xl drop-shadow">
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[var(--accent)] to-[var(--accent-2)] flex items-center justify-center text-white text-xs font-bold">WC</div>
+            <img src="/wcpool-logo.png" alt="WCPOOL" className="w-9 h-9" />
             WC Pool
           </NavLink>
-          <div className="hidden text-xs uppercase tracking-[3px] text-white/70 sm:block drop-shadow">FIFA 2026</div>
+          <div className="hidden text-xs uppercase tracking-[3px] text-white sm:block drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">FIFA 2026</div>
         </div>
 
         <nav className="hidden items-center gap-2 text-sm md:flex">
@@ -49,7 +49,7 @@ function Header() {
       </div>
 
       {/* Mobile nav - glassy */}
-      <div className="md:hidden border-t border-white/10 bg-black/30 backdrop-blur-xl">
+      <div className="md:hidden border-t border-white/10 bg-black/30 backdrop-blur-xl text-white">
         <div className="mx-auto flex max-w-6xl gap-1 overflow-x-auto px-4 py-3 text-base">
           <NavLink to="/predict" className={({ isActive }) => navClass(isActive)}>Predict</NavLink>
           <NavLink to="/leaderboard" className={({ isActive }) => navClass(isActive)}>Leaderboard</NavLink>
@@ -62,7 +62,7 @@ function Header() {
 }
 
 function navClass(isActive: boolean) {
-  return `rounded-full px-4 py-1.5 text-base transition-all drop-shadow-[0_1px_3px_rgba(0,0,0,0.7)] ${isActive 
+  return `rounded-full px-4 py-1.5 text-base transition-all drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)] ${isActive 
     ? 'bg-white/10 text-white border border-white/20' 
     : 'text-white hover:bg-white/5' }`
 }
@@ -82,11 +82,11 @@ export default function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/rules" element={<Rules />} />
           <Route path="/admin" element={<Admin />} />
-          <Route path="*" element={<div className="glass p-8 text-center">Page not found. <NavLink to="/" className="text-white/90 hover:text-white underline">Go home</NavLink></div>} />
+          <Route path="*" element={<div className="glass p-8 text-center">Page not found. <NavLink to="/" className="text-white hover:text-white underline">Go home</NavLink></div>} />
         </Routes>
       </main>
 
-      <footer className="glass mt-auto border-t border-white/10 py-5 text-center text-sm text-white/80 drop-shadow">
+      <footer className="glass mt-auto border-t border-white/10 py-5 text-center text-sm text-white drop-shadow">
         Entry = send exact fee from your wallet to the treasury. Your sending address = your league profile. 
         Pot = live verifiable treasury balance. Payouts executed manually by the organizer.
       </footer>

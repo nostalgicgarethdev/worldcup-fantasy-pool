@@ -1,5 +1,9 @@
 # WC Fantasy Pool — FIFA World Cup 2026 (Token Entry)
 
+<p align="center">
+  <img src="public/wcpool-logo.png" alt="WCPOOL Logo" width="200" />
+</p>
+
 **GitHub:** https://github.com/nostalgicgarethdev/worldcup-fantasy-pool
 
 Real $TOKEN (pump.fun) prediction pool for the 2026 World Cup.
