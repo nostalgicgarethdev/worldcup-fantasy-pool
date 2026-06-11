@@ -12,8 +12,12 @@ export function Leaderboard() {
     if (!wallet) return
     try {
       const raw = localStorage.getItem(`wc-picks-${wallet}`)
-      if (raw) setMyPicks(JSON.parse(raw))
-    } catch {}
+      if (raw) {
+        queueMicrotask(() => setMyPicks(JSON.parse(raw)))
+      }
+    } catch {
+      /* ignore storage errors */
+    }
   }, [wallet])
 
   const board = getDemoLeaderboard(Object.keys(myPicks).length ? myPicks : undefined, wallet || undefined)
@@ -38,14 +42,14 @@ export function Leaderboard() {
               <div key={idx} className={`flex items-center gap-4 px-6 py-4 ${isMe ? 'bg-white/5' : ''}`}>
                 <div className="w-8 text-center font-mono text-white/60 tabular-nums">#{idx + 1}</div>
                 <div className="flex-1 min-w-0">
-                  <div className="font-mono text-sm break-all text-[var(--text-h)]">{row.wallet}</div>
+                  <div className="font-mono text-sm break-all text-white">{row.wallet}</div>
                   {row.label && <div className="text-xs text-white/60">{row.label}</div>}
                 </div>
                 <div className="text-right">
                   <div className="text-2xl font-semibold tabular-nums text-white drop-shadow">{row.score}</div>
                   <div className="text-[10px] uppercase tracking-widest text-white/60">pts • {row.picksCount} picks</div>
                 </div>
-                {isMe && <div className="text-xs px-2 py-0.5 rounded bg-[var(--accent-2)]/20 text-[var(--accent-2)]">YOU</div>}
+                {isMe && <div className="text-xs px-2 py-0.5 rounded bg-white/10 text-white">YOU</div>}
               </div>
             )
           })}
@@ -54,7 +58,7 @@ export function Leaderboard() {
 
       {wallet && Object.keys(myPicks).length === 0 && (
         <div className="glass p-6 text-sm text-white/80">
-          No picks yet for this wallet. Go to <NavLink to="/predict" className="text-[var(--accent-2)] underline">Predict</NavLink> to make your 1X2 selections (after sending entry).
+          No picks yet for this wallet. Go to <NavLink to="/predict" className="text-white/90 hover:text-white underline">Predict</NavLink> to make your 1X2 selections (after sending entry).
         </div>
       )}
 

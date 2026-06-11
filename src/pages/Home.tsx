@@ -20,7 +20,7 @@ export function Home() {
           FIFA WORLD CUP 2026  •  48 TEAMS  •  104 MATCHES
         </motion.div>
 
-        <h1 className="display text-[76px] md:text-[100px] font-semibold tracking-[-6.2px] leading-[0.8] text-white mb-6">
+        <h1 className="display text-[76px] md:text-[100px] font-semibold tracking-[-6.2px] leading-[0.8] text-white mb-6 drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)]">
           The most<br />premium<br />World Cup pool.
         </h1>
 
@@ -93,7 +93,7 @@ export function Home() {
               <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
               
               <div className="font-mono text-sm tracking-[3px] text-white/90 mb-2 drop-shadow">{step.num}</div>
-              <div className="text-white text-2xl font-semibold tracking-[-0.4px] mb-3 group-hover:text-[var(--accent-2)] transition-colors drop-shadow">{step.title}</div>
+              <div className="text-white text-2xl font-semibold tracking-[-0.4px] mb-3 group-hover:text-white/80 transition-colors drop-shadow">{step.title}</div>
               <p className="text-base leading-relaxed text-white/95 drop-shadow relative z-10">{step.desc}</p>
             </motion.div>
           ))}
@@ -115,7 +115,7 @@ export function Home() {
       </div>
 
       <div className="text-center pt-6">
-        <NavLink to="/leaderboard" className="text-[var(--accent-2)] hover:text-[var(--accent-strong)] font-medium text-base tracking-wider flex items-center justify-center gap-1.5 drop-shadow">
+        <NavLink to="/leaderboard" className="text-white hover:text-white/80 font-medium text-base tracking-wider flex items-center justify-center gap-1.5 drop-shadow">
           VIEW CURRENT STANDINGS <span>→</span>
         </NavLink>
       </div>

@@ -56,7 +56,7 @@ export function Admin() {
                   ))}
                   <button onClick={() => setResult(m.id, null)} className="px-3 py-1.5 rounded-xl border border-white/15 text-white/60 hover:text-white/90">Clear</button>
                 </div>
-                {cur && <div className="text-xs uppercase tracking-widest text-[var(--accent-2)]/90 self-center">set: {cur}</div>}
+                {cur && <div className="text-xs uppercase tracking-widest text-white/90 self-center">set: {cur}</div>}
               </div>
             )
           })}

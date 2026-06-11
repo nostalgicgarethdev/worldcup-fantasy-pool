@@ -3,7 +3,7 @@
 import { Buffer } from 'buffer'
 globalThis.Buffer = Buffer
 if (typeof window !== 'undefined') {
-  ;(window as any).Buffer = Buffer
+  ;(window as { Buffer?: typeof Buffer }).Buffer = Buffer
 }
 
 import { StrictMode } from 'react'

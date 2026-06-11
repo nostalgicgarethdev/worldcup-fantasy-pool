@@ -64,9 +64,10 @@ export function SendEntryButton({ onSuccess }: { onSuccess?: (sig: string) => vo
       localStorage.setItem(`wc-paid-${publicKey.toBase58()}`, signature)
 
       onSuccess?.(signature)
-    } catch (e: any) {
+    } catch (e: unknown) {
       console.error(e)
-      toast.error('Send failed', { description: e?.message || 'Check balance, network, and config (mint/treasury)' })
+      const message = e instanceof Error ? e.message : (e as { message?: string })?.message
+      toast.error('Send failed', { description: message || 'Check balance, network, and config (mint/treasury)' })
     } finally {
       setLoading(false)
     }

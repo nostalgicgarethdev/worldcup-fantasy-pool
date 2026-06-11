@@ -16,9 +16,9 @@ export function PotDisplay({ compact = false }: { compact?: boolean }) {
 
   useEffect(() => {
     let cancelled = false
-    setLoading(true)
 
     async function load() {
+      if (!cancelled) setLoading(true)
       if (!config.treasuryWallet) {
         if (!cancelled) {
           setSol(null)
@@ -38,7 +38,7 @@ export function PotDisplay({ compact = false }: { compact?: boolean }) {
           const accounts = await connection.getParsedTokenAccountsByOwner(pubkey, { mint: mintKey })
           let total = 0
           for (const a of accounts.value) {
-            const info = a.account.data as any
+            const info = a.account.data as { parsed?: { info?: { tokenAmount?: { uiAmount?: number } } } }
             total += info.parsed?.info?.tokenAmount?.uiAmount ?? 0
           }
           if (!cancelled) setTokenBal(total)
@@ -77,7 +77,7 @@ export function PotDisplay({ compact = false }: { compact?: boolean }) {
     return (
       <div className="glass rounded-2xl border border-white/10 px-3.5 py-1 text-[10px] flex items-center gap-2 font-medium tracking-widest">
         <span className="text-[var(--subtle)]/80">POT</span>
-        <span className="font-mono text-[var(--text-h)] tabular-nums text-xs">
+        <span className="font-mono text-white tabular-nums text-xs">
           {loading ? '...' : displayAmount} {config.tokenSymbol}
         </span>
       </div>
@@ -101,7 +101,7 @@ export function PotDisplay({ compact = false }: { compact?: boolean }) {
           </div>
 
           <div className="flex items-baseline gap-3">
-            <div className="text-[72px] md:text-[86px] font-semibold tracking-[-4.5px] leading-none text-[var(--text-h)] tabular-nums drop-shadow">
+            <div className="text-[72px] md:text-[86px] font-semibold tracking-[-4.5px] leading-none text-white tabular-nums drop-shadow">
               {loading ? '…' : displayAmount}
             </div>
             <div className="text-3xl font-medium text-white drop-shadow pb-2">{config.tokenSymbol}</div>

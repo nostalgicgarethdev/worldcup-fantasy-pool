@@ -18,7 +18,7 @@ function Header() {
     <header className="sticky top-0 z-50 glass border-b border-white/10 backdrop-blur-3xl bg-white/5">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <div className="flex items-center gap-4">
-          <NavLink to="/" className="flex items-center gap-3 font-semibold text-[var(--text-h)] tracking-[-0.5px] text-xl">
+          <NavLink to="/" className="flex items-center gap-3 font-semibold text-white tracking-[-0.5px] text-xl drop-shadow">
             <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[var(--accent)] to-[var(--accent-2)] flex items-center justify-center text-white text-xs font-bold">WC</div>
             WC Pool
           </NavLink>
@@ -40,7 +40,7 @@ function Header() {
           {publicKey && (
             <NavLink
               to={`/profile/${publicKey.toBase58()}`}
-              className="text-sm px-3 py-1.5 rounded-full border border-white/10 hover:bg-white/5 text-white/80 hover:text-white hidden md:block transition-colors drop-shadow"
+              className="text-sm px-3 py-1.5 rounded-full border border-white/10 hover:bg-white/5 text-white hidden md:block transition-colors drop-shadow-[0_1px_3px_rgba(0,0,0,0.7)]"
             >
               My Profile
             </NavLink>
@@ -62,16 +62,14 @@ function Header() {
 }
 
 function navClass(isActive: boolean) {
-  return `rounded-full px-4 py-1.5 text-base transition-all ${isActive 
+  return `rounded-full px-4 py-1.5 text-base transition-all drop-shadow-[0_1px_3px_rgba(0,0,0,0.7)] ${isActive 
     ? 'bg-white/10 text-white border border-white/20' 
-    : 'text-white/80 hover:text-white hover:bg-white/5' }`
+    : 'text-white hover:bg-white/5' }`
 }
 
 export default function App() {
   return (
-    <div className="flex min-h-screen flex-col text-[var(--text)]">
-      {/* Fixed World Cup hero background (local asset /hero.png) - guarantees the image shows for everyone */}
-      <div className="bg-worldcup" aria-hidden="true" />
+    <div className="flex min-h-screen flex-col text-[var(--text)] relative">
       <Header />
 
       {/* Main content "canvas" with rich background so the liquid glass panels can shine (inspired by the reference) */}
@@ -84,7 +82,7 @@ export default function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/rules" element={<Rules />} />
           <Route path="/admin" element={<Admin />} />
-          <Route path="*" element={<div className="glass p-8 text-center">Page not found. <NavLink to="/" className="text-[var(--accent-2)] underline">Go home</NavLink></div>} />
+          <Route path="*" element={<div className="glass p-8 text-center">Page not found. <NavLink to="/" className="text-white/90 hover:text-white underline">Go home</NavLink></div>} />
         </Routes>
       </main>
 

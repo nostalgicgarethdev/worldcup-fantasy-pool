@@ -2,11 +2,20 @@
 
 **GitHub:** https://github.com/nostalgicgarethdev/worldcup-fantasy-pool
 
-**Live site:** Deploy via Vercel (see below) — now featuring a premium **liquid glass** new-age design (heavy backdrop blur, frosted semi-transparent panels, layered depth, refined motion, and high-end typography).
+Real $TOKEN (pump.fun) prediction pool for the 2026 World Cup.
 
-Real $TOKEN (pump.fun) prediction pool. Users send a fixed entry fee from their wallet to your treasury. The sending address becomes their league profile. 1X2 picks on matches. 3 pts per correct outcome. Staged phase winners + final overall winner take (portions of) the visible pot.
+Users send a fixed entry fee from their Solana wallet to the treasury. Their sending address becomes their permanent league profile. Pick Home, Draw, or Away on matches. 3 points per correct outcome. The organizer enters results through the built-in admin, the leaderboard updates live, and top scorers win from the visible pot.
 
-Real $TOKEN (pump.fun) prediction pool. Users send a fixed entry fee from their wallet to your treasury. The sending address becomes their league profile. 1X2 picks on matches. 3 pts per correct outcome. Staged phase winners + final overall winner take (portions of) the visible pot.
+## Features
+
+- Complete official 104-match 2026 schedule (all 72 group stage + full knockout bracket with placeholders)
+- Premium liquid glass UI over a realistic soccer stadium background
+- Solana wallet connect (Phantom + Solflare)
+- Live on-chain treasury pot balance
+- Real SPL token entry transfers when configured
+- Full prediction interface across every group
+- Working admin panel — enter results and instantly see updated scores, leaderboard, and profiles
+- Per-wallet prediction persistence and dynamic live scoring
 
 ## Quick Start (Local)
 
@@ -28,81 +37,38 @@ treasuryWallet: 'YOUR_TREASURY_WALLET_ADDRESS_HERE',
 entryFee: 100000,   // change to whatever X you want
 ```
 
-- The big **Pot** card on the home page shows the live $TOKEN balance of the treasury (exactly like your other treasury displays).
-- When users click **Send X $TOKEN & Join**, the app builds a real SPL token transfer and sends it to the treasury (user approves in Phantom/Solflare).
-- Their **sending wallet address** is now a league member / profile.
+- The big **Pot** on the homepage shows the live $TOKEN balance of the treasury.
+- The **Send X $TOKEN & Join** button builds a real SPL token transfer.
+- The sender’s wallet address becomes their permanent identity in the league.
 
-For testing you can use devnet + a test mint first, then switch to mainnet + your real token.
+Start with a test mint on devnet. Switch to your real pump.fun token when you're ready for mainnet.
 
-## How Entry Works (per your spec)
+## How It Works
 
-1. User connects wallet.
-2. They send the exact fee (in-app button or manual copy-paste to Phantom) **from their wallet to the treasury**.
-3. The **from address** = their identity in the pool.
-4. Once sent (and verified), they can submit 1X2 predictions for matches.
-5. Organizer (treasury controller) enters results after matches.
-6. Leaderboard + phase leaders update.
-7. At phase ends / final you manually send prize(s) from the treasury to the winning wallet(s). The app gives you the ranked list.
+1. User connects their Solana wallet.
+2. They send the exact entry fee from their wallet to the treasury (via the in-app button or by pasting the address into Phantom/Solflare).
+3. Their sending address is now their permanent profile in the pool.
+4. They submit 1X2 predictions on matches.
+5. The organizer goes to `/admin` and enters results after matches.
+6. Scores update live. The leaderboard and every profile reflect the current standings immediately.
+7. At the end of phases or after the final, the organizer distributes prizes from the treasury to the winning wallets. The app provides the full ranked list.
 
-Everything is transparent — anyone can look at the treasury on Solscan.
+All treasury activity is publicly verifiable on Solscan.
 
-## Current Status (MVP in progress)
+## Demo Admin
 
-- ✅ Dark clean UI (matches your forge-agents / DePIN style)
-- ✅ Wallet connect (Phantom + Solflare)
-- ✅ Live treasury pot balance (SOL + your $TOKEN)
-- ✅ Real SPL token entry transfer (Send button builds the tx)
-- ✅ Working per-wallet prediction picks (saved locally for demo)
-- ✅ Demo "pay" for instant testing without real tokens
-- ✅ Full 104-match schedule (official 2026 data: 72 group + R32/R16/QF/SF/third/final bracket with placeholders)
-- ⏳ Server-backed persistence (SQLite) + real scoring engine + admin result entry + payout lists
-- ⏳ Proper per-match lock times + tx verification for entries
-- ⏳ Optional display usernames (sign message after entry)
+A fully functional demo admin is included so you can experience the complete scoring flow right away:
 
-## Next (what will be added very soon)
+- Use the **Demo pay** button to simulate joining the pool.
+- Make predictions across the groups.
+- Open `/admin` and start entering results for matches.
+- Watch the leaderboard and profiles update instantly.
 
-- Server-backed persistence (SQLite for local/dev, easy Supabase/Vercel KV later)
-- Real scoring + live leaderboard (compute from entered results + saved picks)
-- Admin panel for entering results (after matches) + generating payout lists for phases/final
-- Proper per-match lock times + on-chain tx verification for entries (prevent post-kickoff picks)
-- (Optional) sign-to-set display name after entry paid
-
-## Deploy (Recommended)
-
-The site is designed to be deployed as a static frontend (Vercel is perfect and what your other projects use).
-
-**Fastest professional deploy (recommended):**
-
-1. Go to https://vercel.com/new
-2. Import the GitHub repo: `nostalgicgarethdev/worldcup-fantasy-pool`
-3. Vercel auto-detects the Vite project and uses the included `vercel.json` (for client-side routing).
-4. Hit Deploy.
-
-The liquid glass UI will be live instantly. Every push auto-deploys.
-
-(Alternative local: after `vercel login`, run `npm run build && npx vercel --prod`)
-
-You can also run locally with `npm run build && npx vercel --prod` after running `vercel login`.
-
-**Note on the token:** The treasury is now set. For the Send Entry button and exact $TOKEN pot balance to work, also set your pump.fun token mint in `src/lib/config.ts`. Currently transfers will show a friendly error until the mint is provided.
-
-## Design
-
-The UI has been elevated to a very premium, new-age, high-end aesthetic:
-- Bold confident typography
-- Luxurious live Pot display as the hero element
-- Clean modern cards with excellent spacing
-- Subtle professional motion (framer-motion)
-- Strong visual hierarchy and trust signals
-- Tactile prediction pickers
-
-Not bland — sharp, expensive, web3/sports product feel.
+Everything runs on localStorage for demo and development purposes. Perfect for testing the full experience.
 
 ## Important Notes
 
 - This is a **skill-based fantasy contest**, not gambling. Frame it that way.
-- You (the organizer) control the treasury and are responsible for paying winners.
-- Strongly recommend using a multisig for the treasury once the pot is non-trivial.
-- Test on devnet first with a throwaway mint.
-
-When you're ready, paste your real token mint + treasury address and I'll pre-fill + help test a real transfer.
+- The organizer controls the treasury and is responsible for paying winners.
+- For real use with meaningful money, strongly recommend using a multisig for the treasury wallet.
+- Start with a throwaway mint on devnet while testing.

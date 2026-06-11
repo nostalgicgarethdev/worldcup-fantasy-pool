@@ -23,11 +23,15 @@ export function Predict() {
     if (!wallet) return
     try {
       const raw = localStorage.getItem(getStorageKey(wallet))
-      if (raw) setPicks(JSON.parse(raw))
-    } catch {}
+      if (raw) {
+        queueMicrotask(() => setPicks(JSON.parse(raw)))
+      }
+    } catch {
+      /* ignore storage errors */
+    }
     // Demo: if user has "paid" in this browser session for this wallet, allow picks
     const paid = localStorage.getItem(`wc-paid-${wallet}`)
-    setHasEntry(!!paid || wallet === 'demo')
+    queueMicrotask(() => setHasEntry(!!paid || wallet === 'demo'))
   }, [wallet])
 
   function setPick(matchId: number, pick: 'H' | 'D' | 'A') {
@@ -36,7 +40,9 @@ export function Predict() {
     setPicks(next)
     try {
       localStorage.setItem(getStorageKey(wallet), JSON.stringify(next))
-    } catch {}
+    } catch {
+      /* ignore storage errors */
+    }
   }
 
   function demoPay() {
@@ -71,7 +77,7 @@ export function Predict() {
         <div className="glass border border-white/10 p-6">
           <div className="flex flex-col sm:flex-row sm:items-center gap-3 justify-between">
             <div>
-              <div className="font-semibold text-[var(--text-h)] text-lg">You have not entered yet</div>
+              <div className="font-semibold text-white text-lg">You have not entered yet</div>
               <div className="text-base text-[var(--subtle)] mt-1">Send exactly {config.entryFee.toLocaleString()} {config.tokenSymbol} from this wallet to the treasury.<br />The sending address becomes your profile.</div>
             </div>
             <div className="flex gap-2 mt-3 sm:mt-0">
@@ -94,9 +100,9 @@ export function Predict() {
                 <div key={m.id} className="glass flex flex-col md:flex-row md:items-center gap-4 md:gap-6 p-5 md:p-6">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-baseline gap-3 text-xl">
-                      <span className="font-semibold text-[var(--text-h)] tracking-[-0.3px]">{m.home}</span>
+                      <span className="font-semibold text-white tracking-[-0.3px]">{m.home}</span>
                       <span className="text-sm uppercase tracking-[2px] text-white/70">vs</span>
-                      <span className="font-semibold text-[var(--text-h)] tracking-[-0.3px]">{m.away}</span>
+                      <span className="font-semibold text-white tracking-[-0.3px]">{m.away}</span>
                     </div>
                     <div className="text-sm text-white/80 mt-1.5 drop-shadow">{m.date} {m.time} • {m.venue}</div>
                   </div>
@@ -108,15 +114,15 @@ export function Predict() {
                         disabled={!hasEntry || locked}
                         onClick={() => setPick(m.id, p)}
                         className={`flex-1 rounded-2xl border py-[10px] text-base font-medium transition-all active:scale-[0.985] ${current === p 
-                          ? 'border-[var(--accent-2)] bg-white/5 text-[var(--text-h)] shadow-inner' 
-                          : 'border-white/10 hover:border-white/25 text-[var(--text)] hover:text-[var(--text-h)]'}`}
+                          ? 'border-[var(--accent-2)] bg-white/5 text-white shadow-inner' 
+                          : 'border-white/10 hover:border-white/25 text-white/90 hover:text-white'}`}
                       >
                         {p === 'H' ? 'Home' : p === 'D' ? 'Draw' : 'Away'}
                       </button>
                     ))}
                   </div>
 
-                  {current && <div className="text-sm uppercase tracking-widest text-[var(--accent-2)]/90 md:w-14 md:text-right font-medium drop-shadow">Picked {current}</div>}
+                  {current && <div className="text-sm uppercase tracking-widest text-white/90 md:w-14 md:text-right font-medium drop-shadow">Picked {current}</div>}
                 </div>
               )
             })}
